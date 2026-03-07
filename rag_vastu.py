@@ -47,7 +47,7 @@ def load_pdf_with_ocr(pdf_path):
 
 def setup_rag(pdf_paths=None):
     if pdf_paths is None:
-        pdf_paths = ["vastu-for-home.pdf"]
+        pdf_paths = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
         
     for pdf_path in pdf_paths:
         if not os.path.exists(pdf_path):
@@ -101,7 +101,8 @@ def setup_rag(pdf_paths=None):
     
     if api_key:
         print("Gemini API Key found. Setting up LLM capabilities.")
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", google_api_key=api_key)
+        # Switched to gemini-2.5-flash as the lite version often hits strict free tier RPD faster
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key)
         
         # 1. Multi-Query Retrieval Setup
         # This makes the LLM generate variations of the user's question to pull in more comprehensive context
@@ -113,11 +114,17 @@ def setup_rag(pdf_paths=None):
         
         # 2. Advanced Prompt Engineering
         system_prompt = (
-            "You are an Architectural Prompt Engineer analyzing Vastu Shastra rules and Kerala Municipality Building Rules (KPBR). "
-            "Your ONLY goal is to output the final optimized AI image generation prompt based strictly on the retrieved context, user inputs, and common architectural knowledge. "
-            "CRITICAL: Do not output any conversational text. Do not provide reasoning, explanations, or introductory/concluding remarks. "
-            "Output ONLY the optimized image generation prompt itself, formatted clearly as a structured list of visual requirements for a 2D floor plan generator. "
-            "\n\nContext:"
+            "You are an elite Architectural Draftsman and CAD Rendering Expert analyzing Vastu Shastra rules and Kerala Municipality Building Rules (KPBR). "
+            "Your ONLY goal is to output a hyper-technical, optimized AI image generation prompt for DALL-E 3 based strictly on the retrieved context and user inputs. "
+            "CRITICAL RULES FOR DALL-E 3 PROMPT OPTIMIZATION:\n"
+            "1. Focus heavily on SPATIAL RELATIONSHIPS (e.g., 'drawn in the top-right corner', 'placed explicitly on the left border').\n"
+            "2. Focus heavily on EXPLICIT TYPOGRAPHY (e.g., 'The text \"LIVING ROOM 15x18\" is clearly written in bold Arial font within the room boundaries').\n"
+            "3. DO NOT OUTPUT ABSTRACT VASTU THEORY. DALL-E 3 cannot draw 'positive energy'. Translate Vastu into strict physical drafting placement commands.\n"
+            "4. COMPLETELY BAN the word 'Reasoning' or any bullet points explaining WHY a room is placed somewhere. Just state WHERE to draw it.\n"
+            "5. Never hallucinate rooms that were not requested.\n"
+            "6. The final output must be formatted clearly as a structured list of visual drafting requirements for a 2D floor plan generator.\n"
+            "CRITICAL: Do not output any conversational text. Output ONLY the optimized image generation prompt itself.\n\n"
+            "Context:"
             "\n{context}"
             "\n\nClient's Input: {input}"
         )
@@ -136,14 +143,14 @@ def setup_rag(pdf_paths=None):
 
 
 def main():
-    qa_chain, vectordb = setup_rag(["vastu-for-home.pdf"])
+    qa_chain, vectordb = setup_rag(["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"])
     if not vectordb:
         return
 
     llm = qa_chain is not None
 
     while True:
-        query = input("\nAsk a Vastu question (or 'q' to quit): ")
+        query = input("\nAsk a Vastu or KPBR question (or 'q' to quit): ")
         if query.lower() in ['q', 'quit', 'exit']:
             break
         
