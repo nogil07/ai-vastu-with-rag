@@ -1,37 +1,24 @@
-A hyper-realistic, professional, high-definition 2D architectural CAD floor plan.
+A hyper-realistic, professional, high-definition 2D architectural CAD floor plan on a clean white background, depicting a modern, Vastu-compliant G+1 independent house. The plot is East-facing, rectangular, measuring 30' (Width) x 40' (Depth). The overall built-up area is 1200 sqft spread over G+1 floors. The Ground Floor plan is strictly on the LEFT, and the First Floor plan is strictly on the RIGHT on the SAME single image canvas.
 
-*** [0. CRITICAL ANTI-HALLUCINATION RULES] ***
-1. DO NOT invent or draw any rooms/features not explicitly requested above.
-2. Use clean, perfect English for ALL text labels. No misspellings.
-3. Maximize interior space utilization. Do not leave vast empty indoor zones.
+**KPBR Setbacks:** The house adheres to Kerala Panchayat Building Rules (KPBR) setbacks. Given the total built-up area (1200 sqft / ~111.5 sq.m) is below 200 sq.m and assuming a height below 8m for G+1, reduced setbacks are applied as per the rule allowing reduction below 50cm for smaller residential buildings. The minimum open spaces from plot boundaries are: Front (East) 3.0m (10'-0"), Rear (West) 1.0m (3'-3"), Side (North) 1.0m (3'-3"), Side (South) 1.0m (3'-3"). These setbacks must be physically written in the open exterior space around the house.
 
-*** [1. PLOT ORIENTATION & SETBACKS] ***
-- **Compass**: Top Right Corner. Compass MUST point NORTH towards the TOP of the image explicitly.
-- **Canvas Alignment**: Because this is an East-facing plot, the main road, the physical entrance gate, and the car parking MUST be drawn explicitly on the RIGHT side of the image canvas.
-- **KPBR Setbacks**: Visually enforce Kerala Building Rules. Depict the main house structure strictly recessed from the plot boundary walls using green lawns or driveway space. The rectangular plot measures 30 feet (North-South) by 40 feet (East-West). You MUST explicitly draw these mathematical setback distances physically inside these open boundary spaces on all 4 sides: '3.0m' on the East (front), '2.0m' on the West (rear), '1.5m' on the North, and '1.5m' on the South.
+**Ground Floor Plan (Left Side):**
+*   *Main Entrance*: Positioned on the East side, towards the Northeast sector. *Reasoning: Vastu dictates East, Northeast, or North of Northeast for auspicious energy inflow, avoiding the center or extreme corners.*
+*   *Living Room*: Located at the front (East side) of the house, extending towards the Northeast. *Reasoning: Vastu recommends the living room at the forefront of the house, avoiding West or South, with owner seating facing East for positive energy and successful discussions.*
+*   *Pooja Room*: Situated in the Northeast corner of the house. *Reasoning: The Northeast is the 'Ishanya' corner, considered most sacred and ideal for prayer and meditation in Vastu Shastra.*
+*   *Kitchen*: Placed in the Southeast corner of the house. *Reasoning: Southeast is the 'Agni' (fire) corner, ideal for kitchen placement according to Vastu principles.*
+*   *Dining Area*: Adjacent to the Kitchen, in the East-South-East zone. *Reasoning: Convenient for serving and aligns with positive energy flow when close to the kitchen.*
+*   *Study Room*: Located on the East side, near the living area. *Reasoning: East-facing promotes concentration and positive learning energy.*
+*   *Bedroom 1 (Guest/Elderly)*: Positioned in the Northwest corner of the ground floor. *Reasoning: Northwest is suitable for male family members or guests, holding commanding forces as per Vastu.*
+*   *Common Bathroom*: Adjacent to Bedroom 1, in the Northwest direction. *Reasoning: Vastu suggests North or Northwest for bathroom placement, avoiding central areas.*
+*   *Internal Stairs*: Located on the South side of the house, leading to the first floor. *Reasoning: South or West are suitable directions for internal staircases, avoiding the Northeast which is reserved for positive energy flow.*
+*   *Parking Area*: Designated space at the front (East) within the setback, to the South of the main entrance. *Reasoning: Located at the front of the plot, respecting setbacks and allowing easy access.*
 
-*** [2. ROOM LAYOUT & DIMENSIONS] ***
-*Ground Floor Plan (LEFT HALF OF CANVAS)*:
-- **Main Entrance**: Located on the East (right) side of the house, slightly offset towards the Northeast corner of the building footprint. A single main door is drawn, not facing a wall, with an internal door leading to the living room. No large trees or lamp posts are blocking the entrance path. A small, even-numbered flight of steps leads to the entrance.
-- **Parking**: Located on the East (right) side of the plot, in the front setback area, adjacent to the main entrance. A rectangular space suitable for one car. The text 'CAR PARKING 10" x 20"' is explicitly drawn within this area.
-- **Living Room**: Located in the Northeast quadrant of the house, immediately accessible from the main entrance. Furnished with a sofa set and a coffee table. The text 'LIVING ROOM 12" x 15"' is explicitly drawn inside the room.
-- **Pooja Room**: Located in the Northeast corner of the house, adjacent to the Living Room. Features a small altar. Flooring is depicted as white marble tiles. The text 'POOJA ROOM 4" x 5"' is explicitly drawn inside the room.
-- **Kitchen**: Located in the Southeast quadrant of the house. Features a U-shaped counter, sink, and stove. The text 'KITCHEN 9" x 10"' is explicitly drawn inside the room.
-- **Dining Room**: Located to the West of the Kitchen. Features a dining table with chairs. The text 'DINING ROOM 10" x 12"' is explicitly drawn inside the room.
-- **Bedroom 1**: Located in the South quadrant of the house, positioned towards the Southwest. Furnished with a bed and wardrobe. The text 'BEDROOM 1 10" x 12"' is explicitly drawn inside the room.
-- **Bathroom 1**: Attached to Bedroom 1, located in the Northwest corner of the bedroom. Features a toilet, sink, and shower area. The text 'BATHROOM 1 5" x 8"' is explicitly drawn inside the room.
-- **Staircase (GF portion)**: Starts from the South side of the Ground Floor, leading upwards to the First Floor. Depict stair treads and direction arrow.
+**First Floor Plan (Right Side):**
+*   *Master Bedroom*: Occupies the Southwest corner of the first floor. *Reasoning: Vastu designates the Southwest as the ideal location for the Master Bedroom, especially on upper levels, for stability and authority.*
+*   *Bedroom 2 (Male Member)*: Located in the Northwest corner of the first floor. *Reasoning: West or Northwest is auspicious for male family members, providing authoritative forces.*
+*   *Bedroom 3 (Female Member)*: Positioned in the Southeast direction of the first floor. *Reasoning: South or Southeast ensures good health and happiness for female family members.*
+*   *Attached Bathrooms*: Provided for each bedroom, placed in suitable Vastu directions (e.g., West or North within the room's quadrant). *Reasoning: Bathrooms should avoid Northeast and central zones to maintain positive energy flow.*
+*   *Balcony*: A spacious balcony extending prominently from the East side of the first floor. *Reasoning: East-facing balcony enhances natural light, views, and positive energy inflow, aligning with Vastu principles for openings.*
 
-*First Floor Plan (RIGHT HALF OF CANVAS)*:
-- **Staircase Landing (FF portion)**: Ends on the First Floor, providing access to the rooms. Depict stair treads and direction arrow.
-- **Master Bedroom (Bedroom 2)**: Located in the Southwest quadrant of the First Floor. Furnished with a king-size bed, bedside tables, and a large wardrobe. Curtains are light-colored. The text 'MASTER BEDROOM 12" x 14"' is explicitly drawn inside the room.
-- **Bathroom 2**: Attached to the Master Bedroom, located in the Northwest corner of the room. Features a toilet, sink, and shower area. The text 'BATHROOM 2 6" x 8"' is explicitly drawn inside the room.
-- **Bedroom 3**: Located in the North quadrant of the First Floor, positioned towards the Northwest. Furnished with a bed and wardrobe. Curtains are light-colored. The text 'BEDROOM 3 10" x 12"' is explicitly drawn inside the room.
-- **Bathroom 3**: Attached to Bedroom 3, located in the Northwest corner of the room. Features a toilet, sink, and shower area. The text 'BATHROOM 3 5" x 8"' is explicitly drawn inside the room.
-
-*** [3. VISUAL STYLE & TYPOGRAPHY] ***
-- **Layout Design**: A wide presentation board infographic. Ground Floor on the LEFT, First Floor on the RIGHT side-by-side.
-- **Header Banner**: 'EAST-FACING INDEPENDENT HOUSE' with sub-text '30" x 40" PLOT (G+1)'.
-- **Legends**: Bottom Left Corner showing symbols for Wall, Door, Window, Stairs. Bottom Right Corner showing 'VASTU COMPLIANCE' summary.
-- **CAD Styling**: High-definition textures, realistic green landscaping outside, wooden furniture inside, clear property boundary walls.
-- **Dimensional Typography**: Below EVERY room name (e.g. 'LIVING ROOM'), you MUST explicitly render the exact metrics (e.g. '15" x 18"') in bold readable text.
+**Visuals & Architectural Components:** The 2D floor plan MUST include clear, legible English text labels for every single room, area, and exterior boundary, rendered without any spelling errors. Accurate, consistent numerical measurements (e.g., 12'-0" x 10'-0", 3.65m x 3.05m) must be displayed along the walls for every individual room. Prominent door swings clearly indicating the open direction for every door. Clear window markings on all exterior walls. Structural pillars where architecturally appropriate. Distinctly shaded walls to differentiate them from open spaces. A clear compass/cardinal direction indicator (North arrow, East, South, West labels) prominently placed in the corner of the image, unequivocally showing the East-facing orientation of the plot and house. All spatial arrangements and room placements must perfectly match the Vastu-compliant definitions provided.

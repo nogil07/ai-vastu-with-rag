@@ -67,45 +67,38 @@ def generate_prompt_from_dict(reqs: dict) -> str:
         "East": "RIGHT",
         "West": "LEFT"
     }
-    canvas_side = direction_map.get(facing_val, "BOTTOM")
-
     context_prompt = (
-        f"You are generating a blueprint based on these explicit parameters:\n"
-        f"- Plot: {reqs.get('plotWidth')}x{reqs.get('plotLength')} ({reqs.get('plotShape')}, {reqs.get('builtUpArea')} sqft).\n"
-        f"- Target Rooms: {reqs.get('bedrooms')} Beds, {reqs.get('bathrooms')} Baths, Kitchen ({reqs.get('kitchen')}), Living ({reqs.get('livingRoom')}), Dining ({reqs.get('diningArea')}), Pooja ({reqs.get('poojaRoom')}), Study ({reqs.get('studyRoom')}), Parking ({reqs.get('parking')}).\n"
-        f"- Vastu Level: {reqs.get('vastuCompliance')}\n\n"
+        f"A hyper-realistic, professional, high-definition 2D architectural CAD floor plan on a clean white background, "
+        f"depicting a {reqs.get('style').lower()}, Vastu-compliant {reqs.get('floors')} {reqs.get('buildingType').lower()} "
+        f"on an {reqs.get('facing')}-facing {reqs.get('plotShape').lower()} plot measuring {reqs.get('plotWidth')}' (Width) x {reqs.get('plotLength')}' (Depth). "
+        f"The design emphasizes {reqs.get('style').lower()} aesthetics while strictly following Vastu principles for room placements.\n\n"
         
-        f"Output MUST be structured EXACTLY like this optimized format:\n\n"
+        f"*Ground Floor Plan (Plot Dimensions: {reqs.get('plotWidth')}' x {reqs.get('plotLength')}')*:\n"
+        f"The ground floor layout prioritizes Vastu placements for {reqs.get('facing')}-facing plots.\n"
+        f"For each requested room: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, and requested bedrooms/bathrooms, output exactly like this:\n"
+        f"*   *[Room Name]*: [Location description]. *Reasoning: [Explanation based on Vastu context].\n"
+        f"*   *Internal Stairs*: An internal staircase is included for circulation to the first floor. Positioned for efficient access without infringing upon critical Vastu zones.\n"
+        f"*   *Parking Area*: A designated parking space is provided within the plot boundaries. Located at the front or side, respecting necessary setbacks.\n"
+        f"*   *KPBR Setbacks*: Calculate and strictly provide the Front, Rear, and Side minimum setback open spaces required from the KPBR context for this plot size.\n\n"
         
-        f"A hyper-realistic, professional, high-definition 2D architectural CAD floor plan...\n\n"
+        f"*First Floor Plan*:\n"
+        f"For each requested upper-floor room (Master Bedroom, extra bedrooms, etc.), output exactly like this:\n"
+        f"*   *[Room Name]*: [Location description]. *Reasoning: [Explanation based on Vastu context].\n"
+        f"*   *Balcony*: A spacious balcony extending from the East or North side of the first floor, enhancing natural light and views.\n\n"
         
-        f"*** [0. CRITICAL ANTI-HALLUCINATION RULES] ***\n"
-        f"1. DO NOT invent or draw any rooms/features not explicitly requested above.\n"
-        f"2. Use clean, perfect English for ALL text labels. No misspellings.\n"
-        f"3. Maximize interior space utilization. Do not leave vast empty indoor zones.\n\n"
-        
-        f"*** [1. PLOT ORIENTATION & SETBACKS] ***\n"
-        f"- **Compass**: Top Right Corner. Compass MUST point NORTH towards the TOP of the image explicitly.\n"
-        f"- **Canvas Alignment**: Because this is an {facing_val}-facing plot, the main road, the physical entrance gate, and the car parking MUST be drawn explicitly on the {canvas_side} side of the image canvas. \n"
-        f"- **KPBR Setbacks**: Visually enforce Kerala Building Rules. Depict the main house structure strictly recessed from the plot boundary walls using green lawns or driveway space. You MUST explicitly draw these mathematical setback distances (e.g., '3.0m', '1.5m') physically inside these open boundary spaces on all 4 sides.\n\n"
-        
-        f"*** [2. ROOM LAYOUT & DIMENSIONS] ***\n"
-        f"*Ground Floor Plan (LEFT HALF OF CANVAS)*:\n"
-        f"Calculate Vastu placements, but DO NOT output your reasoning. For each explicitly requested ground floor room, output ONLY its exact physical location, furniture layout, and the required text callout:\n"
-        f"- [Room Name]: [Physical location, e.g., 'Located in the Northeast corner']. [Furniture/details]. The text '[ROOM NAME] [Calculated Dimension]' is explicitly drawn inside the room.\n"
-        f"...\n\n"
-        
-        f"*First Floor Plan (RIGHT HALF OF CANVAS)*:\n"
-        f"For each explicitly requested first floor room, output ONLY its physical location, furniture layout, and required text callout:\n"
-        f"- [Room Name]: [Physical location]. [Furniture/details]. The text '[ROOM NAME] [Calculated Dimension]' is explicitly drawn inside the room.\n"
-        f"...\n\n"
-        
-        f"*** [3. VISUAL STYLE & TYPOGRAPHY] ***\n"
-        f"- **Layout Design**: A premium, magazine-quality architectural presentation board infographic. Ground Floor Plan on the LEFT, First Floor Plan on the RIGHT, side-by-side.\n"
-        f"- **Header Banner**: A sleek, modern title: '{facing_val.upper()}-FACING INDEPENDENT HOUSE' with elegant sub-text '{reqs.get('plotWidth')}\" x {reqs.get('plotLength')}\" PLOT ({reqs.get('floors')})'.\n"
-        f"- **Legends (DRAW EXACTLY ONE)**: In the Bottom Left Corner, draw exactly ONE unified 'LEGEND' box explaining symbols for Wall, Door, Window, Stairs. In the Bottom Right Corner, draw ONE 'VASTU COMPLIANCE' summary box.\n"
-        f"- **CAD Styling**: Ultra-high definition photorealistic textures, lush green landscaping outside the plot, modern wooden furniture staging inside, clear outer boundary walls.\n"
-        f"- **Dimensional Typography**: Below EVERY room name, explicitly render the exact metrics (e.g. '15\" x 18\"') in bold, readable, crisp text.\n"
+        f"*Visuals & Architectural Components*:\n"
+        f"The generated 2D floor plan image MUST include the following professional architectural drawing components:\n"
+        f"*   **CRITICAL MULTI-FLOOR RULE**: If multiple floors are requested (e.g., Ground & First Floor), they MUST be drawn side-by-side on the SAME single image canvas (Ground Floor strictly on the LEFT, First Floor strictly on the RIGHT).\n"
+        f"*   Clear, legible English text labels for every single room, area, and exterior boundary, rendered without any spelling errors.\n"
+        f"*   Accurate, consistent numerical measurements displayed along the walls for every individual room (e.g., 12'-0\" x 10'-0\", 3.65m x 3.05m).\n"
+        f"*   Prominent door swings clearly indicating the open direction for every door.\n"
+        f"*   Clear window markings on all exterior walls.\n"
+        f"*   Structural pillars (where architecturally appropriate).\n"
+        f"*   Distinctly shaded walls to differentiate them from open spaces.\n"
+        f"*   A clear compass/cardinal direction indicator (North arrow, East, South, West labels) prominently placed in the corner of the image, unequivocally showing the {reqs.get('facing')}-facing orientation of the plot and house.\n"
+        f"*   The overall built-up area of {reqs.get('builtUpArea')} sqft (spread over {reqs.get('floors')} floors) should be clearly indicated.\n"
+        f"*   The KPBR setbacks MUST be physically written in the open exterior space around the house.\n"
+        f"*   All spatial arrangements and room placements must perfectly match the Vastu-compliant definitions provided above.\n"
     )
 
     try:
