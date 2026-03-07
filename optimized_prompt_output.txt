@@ -1,0 +1,35 @@
+A hyper-realistic, professional, high-definition 2D architectural CAD floor plan, presented as a wide landscape canvas infographic.
+
+*Ground Floor Plan (Plot Dimensions: 30' x 40')*:
+The ground floor layout prioritizes optimal Vastu compliance and space utilization for an East-facing, independent G+1 house.
+*   *Main Entrance*: Positioned in the East or Northeast sector, avoiding the exact center or corners. It should not face a wall or a direct opening to another room. A short, even-numbered flight of stairs is permissible if leading to the entrance. The entrance should not be blocked by large trees or lamp posts. It should be a double-shutter teak door, larger than other doors.
+*   *Living Room*: Located in the North or East part of the forefront of the house, designed to be spacious. Seating arrangements should facilitate facing East for the owner and South or West for guests/business associates. The room should be brightly lit with dark curtains (excluding red and black).
+*   *Kitchen*: Placed in the Southeast or East sector, designed as an open kitchen layout.
+*   *Dining Area*: Adjacent to the Kitchen, in a favorable Vastu zone, possibly South or West of the living area but not blocking cosmic energy flow.
+*   *Pooja Room*: Located in the Northeast corner, with white marble tiles.
+*   *Car Parking*: Positioned strictly at the FRONT or SIDE of the house, fully within the plot boundary, with adequate vehicular access.
+*   *Internal Stairs*: Clearly depicted as leading to the first floor, positioned in a Vastu-compliant location, avoiding the center of the house.
+*   *Bathrooms (3)*: Distributed across floors in Vastu-compliant locations, avoiding direct line of sight from the main entrance or Pooja room.
+*   *Bedroom 1 (Male Member)*: Located in the West or Northwest sector.
+
+*First Floor Plan*:
+*   *Bedrooms (2)*: Positioned according to Vastu principles. One male member's bedroom in the West or Northwest. Other bedrooms in favorable zones like South or West.
+*   *Bathrooms (2)*: Strategically placed, not directly opposite to the main entrance or Pooja room.
+
+*KPBR Setback & Building Rule Constraints*:
+Apply strict KPBR (Kerala Municipality Building Rules) to the 30x40 plot. Visually enforce the following open spaces:
+- *Front Setback*: Minimum 3.00 meters (assuming a public street access as per KPBR context for a 30' wide plot). Depict as green lawn or driveway.
+- *Rear Setback*: Minimum 2.00 meters (based on typical KPBR for residential buildings). Depict as green lawn or paved area.
+- *Side Setbacks*: Minimum 1.20 meters on each side (assuming plot width up to 250 sq.metres). Depict as green lawn or paved area.
+- CRITICAL VISUAL REQUIREMENT: These exact setback dimensions MUST be drawn to scale in the floor plan. Show the main house structure explicitly recessed from the plot boundary walls, depicting the setbacks as green lawns, driveways, or paved open space surrounding the main building on all 4 sides.
+
+*Visuals & Architectural Components (MANDATORY PRESENTATION BOARD STYLE)*:
+The generated 2D Floor Plan image MUST be designed as a professional architectural presentation board infographic, EXACTLY following this visual layout:
+- **Layout**: A wide landscape canvas featuring the Ground Floor Plan on the LEFT half, and the First Floor Plan on the RIGHT half side-by-side.
+- **Top Header Banner**: A bold, centered title reading 'EAST-FACING INDEPENDENT HOUSE' with a sub-banner '30" x 40" PLOT (G+1)' underneath.
+- **Top Right Corner**: A traditional compass rose (North arrow) with N, S, E, W labels.
+- **Bottom Left Corner**: A visual 'LEGEND:' box explaining symbols for Wall, Door, Window, Stairs, Pillar, and Main Entrance (with corresponding visual icons).
+- **Bottom Right Corner**: A green-bordered 'VASTU COMPLIANCE' summary box listing the strategic placements (e.g. Entrance: East/NE, Living: North/East, Kitchen: SE/East, Pooja: NE, Male Bedroom: West/NW).
+- **Drawing Style**: High-definition, textured 2D CAD style with green landscaping (grass/plants) outside the plot, realistic car in the parking, and wooden furniture inside the rooms.
+- **Typography**: Clearly legible room names (e.g. 'LIVING ROOM') with exact numerical dimensions below them (e.g. '15' x 18'').
+- **Labels**: Clearly map out NORTH, SOUTH, EAST, WEST around the border of the ground plan.

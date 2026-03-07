@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Dynamically map Tailwind utilities to the CSS custom properties */
+  --color-bg-main: var(--theme-bg-main);
+  --color-bg-surface: var(--theme-bg-surface);
+  --color-primary-accent: var(--theme-primary-accent);
+  --color-secondary-accent: var(--theme-secondary-accent);
+  --color-ui-highlight: var(--theme-ui-highlight);
+  --color-text-main: var(--theme-text-main);
+  --color-text-muted: var(--theme-text-muted);
+  --color-text-inverse: var(--theme-text-inverse);
+  --color-border-main: var(--theme-border-main);
+  --color-border-muted: var(--theme-border-muted);
+
+  --color-glass-bg: var(--theme-glass-bg);
+  --color-glass-border: var(--theme-glass-border);
+
+  /* Aliases */
+  --color-vastu-gold: var(--theme-primary-accent);
+  --color-vastu-teal: var(--theme-primary-accent);
+  --color-vastu-blue: var(--theme-bg-main);
+  --color-vastu-paper: var(--theme-bg-main);
+  --color-arch-accent: var(--theme-primary-accent);
+  --color-arch-border: var(--theme-border-main);
+  --color-arch-sand: var(--theme-bg-surface);
+
+  --color-app-bg: var(--theme-bg-main);
+  --color-app-surface: var(--theme-bg-surface);
+  --color-app-border: var(--theme-border-main);
+  --color-app-primary: var(--theme-primary-accent);
+  --color-app-secondary: var(--theme-secondary-accent);
+  --color-app-text-primary: var(--theme-text-main);
+  --color-app-text-secondary: var(--theme-text-muted);
+  --color-app-btn-text: var(--theme-text-inverse);
+}
+
+:root {
+  /* Light Mode Base Variables (Warm Architectural) */
+  --theme-bg-main: #B7B3B0;
+  --theme-bg-surface: #A89788;
+  --theme-primary-accent: #C7A15E;
+  --theme-secondary-accent: #877667;
+  --theme-ui-highlight: #858997;
+  --theme-text-main: #2E2E2E;
+  --theme-text-muted: #5A5A5A;
+  --theme-text-inverse: #FFFFFF;
+  --theme-border-main: #D5D1CC;
+  --theme-border-muted: rgba(213, 209, 204, 0.4);
+
+  --theme-glass-bg: rgba(168, 151, 136, 0.65);
+  --theme-glass-border: rgba(213, 209, 204, 0.5);
+}
+
+.dark {
+  /* Dark Mode Base Variables (Deep Teal / Blue Modern AI) */
+  --theme-bg-main: #123840;
+  --theme-bg-surface: #003F3D;
+  --theme-primary-accent: #047675;
+  --theme-secondary-accent: #006E60;
+  --theme-ui-highlight: #397F96;
+  --theme-text-main: #E6F1F3;
+  --theme-text-muted: #A8C2C8;
+  --theme-text-inverse: #FFFFFF;
+  --theme-border-main: #4A6A85;
+  --theme-border-muted: rgba(74, 106, 133, 0.4);
+
+  --theme-glass-bg: rgba(0, 63, 61, 0.7);
+  --theme-glass-border: rgba(74, 106, 133, 0.5);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #B7B3B0, #A89788);
+}
+
+.dark .hero-gradient {
+  background: linear-gradient(180deg, #397F96, #003F3D);
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, #A89788, #C7A15E);
+}
+
+.dark .accent-gradient {
+  background: linear-gradient(135deg, #047675, #123840);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-main text-text-main font-sans antialiased transition-colors duration-700;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(158, 141, 130, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(158, 141, 130, 0.15) 1px, transparent 1px),
+    linear-gradient(to right, rgba(158, 141, 130, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(158, 141, 130, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.dark .blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.arch-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(158, 141, 130, 0.1) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .arch-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+}
+
+.glass-card {
+  @apply bg-glass-bg backdrop-blur-lg border border-glass-border transition-all duration-500;
+  will-change: transform, opacity;
+  box-shadow: 0 8px 32px 0 rgba(158, 141, 130, 0.1);
+}
+
+.dark .glass-card {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.grain-overlay {
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+::selection {
+  @apply bg-arch-accent/30 text-vastu-blue;
+}
+
+@layer utilities {
+  .text-main {
+    @apply text-text-main;
+  }
+
+  .text-strong {
+    @apply text-text-main/90;
+  }
+
+  .text-muted {
+    @apply text-text-muted;
+  }
+
+  .text-subtle {
+    @apply text-text-muted/70;
+  }
+
+  .text-faint {
+    @apply text-text-muted/40;
+  }
+
+  .text-inverse {
+    @apply text-text-inverse;
+  }
+
+  .text-desc {
+    @apply text-text-muted;
+  }
+
+  .text-icon {
+    @apply text-vastu-gold;
+  }
+}
+
+@layer components {
+  .nav-links {
+    @apply hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-text-main/80;
+  }
+
+  .nav-link {
+    @apply transition-colors hover:text-vastu-gold;
+    color: inherit;
+  }
+
+  .link {
+    @apply transition-colors hover:text-vastu-gold;
+  }
+
+  .nav-actions {
+    @apply flex items-center gap-3 md:gap-4;
+  }
+
+  .nav-toggle {
+    @apply p-2 rounded-lg transition-colors text-text-main/60 hover:bg-black/5;
+  }
+
+  .nav-contact {
+    @apply hidden sm:block text-xs font-bold text-text-main/40 hover:text-text-main transition-colors;
+  }
+
+  .nav-mobile-toggle {
+    @apply md:hidden p-2 text-text-main/60 hover:text-text-main transition-colors;
+  }
+}
