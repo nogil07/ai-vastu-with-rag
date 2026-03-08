@@ -102,7 +102,7 @@ def setup_rag(pdf_paths=None):
     if api_key:
         print("Gemini API Key found. Setting up LLM capabilities.")
         # Switched to gemini-2.5-flash as the lite version often hits strict free tier RPD faster
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", google_api_key=api_key)
         
         # 1. Multi-Query Retrieval Setup
         # This makes the LLM generate variations of the user's question to pull in more comprehensive context
@@ -110,24 +110,18 @@ def setup_rag(pdf_paths=None):
         retriever_from_llm = MultiQueryRetriever.from_llm(
             retriever=vectordb.as_retriever(search_kwargs={"k": 10}), 
             llm=llm
-        )
-        
-        # 2. Advanced Prompt Engineering
-        system_prompt = (
-            "You are an elite Architectural Draftsman and Vastu Shastra Expert. "
-            "Your goal is to output an optimized AI image generation prompt for a 2D Floor Plan based on the retrieved context and user inputs. "
-            "CRITICAL RULES:\n"
-            "1. Focus on specific spatial directions (North, East, South, West).\n"
-            "2. Ensure Vastu principles are followed and explained.\n"
-            "3. Ensure KPBR setback measurements and rules are clearly stated.\n"
-            "4. The final output must be formatted exactly like the provided example.\n"
-            "CRITICAL: Do not output any conversational text. Output ONLY the optimized image generation prompt itself.\n\n"
-            "Context:"
-            "\n{context}"
-            "\n\nClient's Input: {input}"
-        )
+        )        # 2. Prompt tuned for concise constraint extraction and strict formatting.
         prompt = ChatPromptTemplate.from_messages([
-            ("human", system_prompt)
+            ("system",
+             "You are an Expert Architectural Prompt Engineer, Master Vastu Shastra Consultant, and Kerala KPBR Compliance Officer.\n"
+             "Your goal is to extract rigid architectural constraints and rules to feed directly into a visual generation prompt.\n"
+             "Use ONLY the provided context for rules and measurements regarding Vastu and KPBR.\n"
+             "Ensure your output dictates that the final drawing MUST be a realistic top-down architectural layout with rich environmental elements (like green grass borders).\n"
+             "Never output conversational filler. Keep outputs compact, structured, and perfectly optimized for AI image generation."),
+            ("human",
+             "Context:\n{context}\n\n"
+             "Client input/task:\n{input}\n\n"
+             "Return ONLY the requested structured constraints.")
         ])
         
         question_answer_chain = create_stuff_documents_chain(llm, prompt)
@@ -176,3 +170,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

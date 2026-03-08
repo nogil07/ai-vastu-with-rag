@@ -1,24 +1,62 @@
-A hyper-realistic, professional, high-definition 2D architectural CAD floor plan on a clean white background, depicting a modern, Vastu-compliant G+1 independent house. The plot is East-facing, rectangular, measuring 30' (Width) x 40' (Depth). The overall built-up area is 1200 sqft spread over G+1 floors. The Ground Floor plan is strictly on the LEFT, and the First Floor plan is strictly on the RIGHT on the SAME single image canvas.
+Create an highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).
 
-**KPBR Setbacks:** The house adheres to Kerala Panchayat Building Rules (KPBR) setbacks. Given the total built-up area (1200 sqft / ~111.5 sq.m) is below 200 sq.m and assuming a height below 8m for G+1, reduced setbacks are applied as per the rule allowing reduction below 50cm for smaller residential buildings. The minimum open spaces from plot boundaries are: Front (East) 3.0m (10'-0"), Rear (West) 1.0m (3'-3"), Side (North) 1.0m (3'-3"), Side (South) 1.0m (3'-3"). These setbacks must be physically written in the open exterior space around the house.
+STYLE:
+- Pure white background outside plot, white inner floors with colored, realistic modern furniture.
+- Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.
 
-**Ground Floor Plan (Left Side):**
-*   *Main Entrance*: Positioned on the East side, towards the Northeast sector. *Reasoning: Vastu dictates East, Northeast, or North of Northeast for auspicious energy inflow, avoiding the center or extreme corners.*
-*   *Living Room*: Located at the front (East side) of the house, extending towards the Northeast. *Reasoning: Vastu recommends the living room at the forefront of the house, avoiding West or South, with owner seating facing East for positive energy and successful discussions.*
-*   *Pooja Room*: Situated in the Northeast corner of the house. *Reasoning: The Northeast is the 'Ishanya' corner, considered most sacred and ideal for prayer and meditation in Vastu Shastra.*
-*   *Kitchen*: Placed in the Southeast corner of the house. *Reasoning: Southeast is the 'Agni' (fire) corner, ideal for kitchen placement according to Vastu principles.*
-*   *Dining Area*: Adjacent to the Kitchen, in the East-South-East zone. *Reasoning: Convenient for serving and aligns with positive energy flow when close to the kitchen.*
-*   *Study Room*: Located on the East side, near the living area. *Reasoning: East-facing promotes concentration and positive learning energy.*
-*   *Bedroom 1 (Guest/Elderly)*: Positioned in the Northwest corner of the ground floor. *Reasoning: Northwest is suitable for male family members or guests, holding commanding forces as per Vastu.*
-*   *Common Bathroom*: Adjacent to Bedroom 1, in the Northwest direction. *Reasoning: Vastu suggests North or Northwest for bathroom placement, avoiding central areas.*
-*   *Internal Stairs*: Located on the South side of the house, leading to the first floor. *Reasoning: South or West are suitable directions for internal staircases, avoiding the Northeast which is reserved for positive energy flow.*
-*   *Parking Area*: Designated space at the front (East) within the setback, to the South of the main entrance. *Reasoning: Located at the front of the plot, respecting setbacks and allowing easy access.*
+COMPOSITION:
+- Top center: 'EAST-FACING INDEPENDENT HOUSE' and '30ft x 40ft PLOT'.
+- Ground Floor laid out left, First Floor alongside it.
+- Bottom Left: LEGEND (Walls/Doors/Windows). Bottom Right: VASTU COMPLIANCE box.
 
-**First Floor Plan (Right Side):**
-*   *Master Bedroom*: Occupies the Southwest corner of the first floor. *Reasoning: Vastu designates the Southwest as the ideal location for the Master Bedroom, especially on upper levels, for stability and authority.*
-*   *Bedroom 2 (Male Member)*: Located in the Northwest corner of the first floor. *Reasoning: West or Northwest is auspicious for male family members, providing authoritative forces.*
-*   *Bedroom 3 (Female Member)*: Positioned in the Southeast direction of the first floor. *Reasoning: South or Southeast ensures good health and happiness for female family members.*
-*   *Attached Bathrooms*: Provided for each bedroom, placed in suitable Vastu directions (e.g., West or North within the room's quadrant). *Reasoning: Bathrooms should avoid Northeast and central zones to maintain positive energy flow.*
-*   *Balcony*: A spacious balcony extending prominently from the East side of the first floor. *Reasoning: East-facing balcony enhances natural light, views, and positive energy inflow, aligning with Vastu principles for openings.*
+PROJECT SPECIFICS:
+- Plot Dimensions: 30.0ft x 40.0ft plot. (You MUST annotate outer plot dimensions 30.0ft and 40.0ft with arrows!).
+- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, Parking.
+- Ground floor bedroom preference: NO specific count required.
 
-**Visuals & Architectural Components:** The 2D floor plan MUST include clear, legible English text labels for every single room, area, and exterior boundary, rendered without any spelling errors. Accurate, consistent numerical measurements (e.g., 12'-0" x 10'-0", 3.65m x 3.05m) must be displayed along the walls for every individual room. Prominent door swings clearly indicating the open direction for every door. Clear window markings on all exterior walls. Structural pillars where architecturally appropriate. Distinctly shaded walls to differentiate them from open spaces. A clear compass/cardinal direction indicator (North arrow, East, South, West labels) prominently placed in the corner of the image, unequivocally showing the East-facing orientation of the plot and house. All spatial arrangements and room placements must perfectly match the Vastu-compliant definitions provided.
+LAYOUT RULES (CRITICAL):
+- ENTRANCES: Place a MAIN ENTRANCE with a text label 'EAST MAIN ENTRANCE' and an arrow. The side with the Main Entrance is considered the EAST side.
+- ROUTING (CRITICAL FIX): Main Entrance MUST open DIRECTLY into a LIVING ROOM or LOBBY ONLY. Generating an entrance that opens into a BEDROOM, KITCHEN, or BATHROOM is a fatal failure.
+- STAIRCASE (MANDATORY): A Staircase MUST be clearly drawn starting on the Ground Floor and continuing on the First Floor.
+- EXITS: Provide an additional Secondary Exit / Back Door at the rear of the house.
+- Kitchen connected to dining. Bedrooms/toilets visually private from entrance.
+- Ensure practical, logical room placements.
+
+DETAILING & SETBACKS (CRITICAL):
+- Building must NOT touch plot walls. Must be visibly centered with green setbacks on all 4 sides.
+- Label 4 side clearances using 'SETBACK [value in m]' ON the green space (no front/rear/ft labels).
+- Wall thickness clearly shown. Doors have swing arcs (NO D1/D2 tags). Windows have NO W1/W2 tags.
+- ROOM LABELS: Every single room MUST have a large text label inside it (e.g. LIVING ROOM, KITCHEN, BEDROOM) + room dimensions.
+- PLOT LABELS: Overall 30.0ft x 40.0ft dimensions must be drawn with arrowheads on the outer compound wall.
+
+VASTU/KPBR RULES:
+### 1) VASTU_DIRECTION_RULES
+*   Main entrance: East, Northeast, or North of Northeast.
+*   Living room: Front of the house, facing East or North.
+*   Male bedrooms: West or Northwest.
+
+### 2) VASTU_ADJACENCY_RULES
+*   Living room: Not on the West or South side of the front room.
+*   Staircase: Avoid North or East sides.
+*   Prayer room, safe, toilet: Not directly under a staircase.
+
+### 3) KPBR_SETBACK_RULES
+*   Distance between buildings (up to 10m height): 1.25m (within a layout).
+*   Distance between buildings (up to 8m height, single/dual unit residential): 1.50m.
+*   Side yards: May not be provided for commercial occupancy in zoned areas if owner agrees.
+
+### 4) DO_NOT_PLACE_RULES
+*   Main entrance: Not facing a wall, road intersection, or dead-end road.
+*   Shadow: Not looming on the main door.
+*   Large trees or lamp posts: Not blocking the entrance.
+*   Main entrance: Not in the center or extreme corners.
+*   Staircase: Circular not recommended.
+
+### 5) DIMENSION_HINTS
+*   Built-up area target: 1200 sqft.
+*   Even number of steps for stairs leading to the main entrance.
+
+DO NOT INCLUDE (FATAL ERRORS):
+- DO NOT MAKE THE KITCHEN THE ENTRANCE. The Main Entrance MUST NOT lead into the Kitchen under any circumstances.
+- NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).
+- NO blurry text. No unlabelled rooms. NO missing stairs on Ground Floor.

@@ -29,22 +29,41 @@ def generate_vastu_report():
         template = """
         You are a Master Vastu Shastra Consultant and Architect.
         Based on the following 2D floor plan generation prompt that was just executed, 
-        create a highly professional, 8-section Markdown compliance report.
+        create a highly professional, exactly 8-section Markdown compliance report.
         
         Plan Details:
         {plan_details}
         
-        Your report MUST exactly follow this 8-section structure:
-        1. Project Overview (Basic details, dimensions, facing)
-        2. Generated Floor Plan Summary (Layout explanation, room positions)
-        3. Vastu Compliance Analysis (Detailed evaluation of room placements)
-        4. KPBR / Building Rule Compliance (Local regulation constraints check)
-        5. Vastu Score / Compliance Score (Numerical score out of 100)
-        6. Detected Issues / Violations (If any rules are broken)
-        7. Recommendations (Suggestions to improve)
-        8. Final Compliance Status (Pass/Fail/Pass with conditions)
+        Your report MUST exactly follow this 8-section structure using these exact headers and emojis:
         
-        Format beautifully with bolding, lists, and markdown headers (##).
+        ## 1️⃣ Project Overview
+        (Basic details, dimensions, facing in bullet points)
+        
+        ## 2️⃣ Generated Floor Plan Summary
+        (Short paragraph layout explanation, room positions)
+        
+        ## 3️⃣ Vastu Compliance Analysis
+        (Detailed evaluation of room placements. MUST bold the evaluation word, e.g., "**Main Entrance (North): Excellent.**" or "**Good.**" or "**Mixed.**")
+        
+        ## 4️⃣ KPBR / Building Rule Compliance
+        (Local regulation constraints check. For setbacks, use a sub-bullet list formatting like:
+        * Setbacks:
+          * Front Setback (North): 3 meters - **Compliant.**
+          * Rear Setback (South): 1 meter - **Compliant.**)
+          
+        ## 5️⃣ Vastu Score / Compliance Score
+        (Numerical score out of 100 with a breakdown of points)
+        
+        ## 6️⃣ Detected Issues / Violations
+        (Numbered list if any rules are broken. If none, write "None.")
+        
+        ## 7️⃣ Recommendations
+        (Numbered list of suggestions to improve)
+        
+        ## 8️⃣ Final Compliance Status
+        (A single bold phrase: e.g., **MINOR CHANGES NEEDED.** or **FULLY COMPLIANT.**)
+        
+        Format beautifully with bolding, lists, and markdown headers. No introduction or conclusion paragraphs outside these 8 sections.
         """
         
         prompt = PromptTemplate(input_variables=["plan_details"], template=template)
