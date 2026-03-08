@@ -36,7 +36,7 @@ def get_user_input():
     if str(reqs['preferGroundFloorBedrooms']).strip().lower() in {"yes", "y", "true", "1"}:
         reqs['groundFloorBedrooms'] = input("How many bedrooms on Ground Floor? [Default: 1]: ") or "1"
     else:
-        reqs['groundFloorBedrooms'] = "0"
+        reqs['groundFloorBedrooms'] = "1"
 
     print("\n--- 4. Vastu Compliance Preference ---")
     print("Levels: Low, Medium, High")
@@ -99,37 +99,37 @@ def _build_cad_prompt(reqs: dict, rule_block: str) -> str:
     )
 
     return (
-        "Create an highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).\n\n"
+        "Create an ultra realistic and highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).\n\n"
         "STYLE:\n"
         "- Pure white background outside plot, white inner floors with colored, realistic modern furniture.\n"
         "- Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.\n\n"
         "COMPOSITION:\n"
         f"- Top center: '{facing.upper()}-FACING {building_type.upper()}' and '{int(plot_w)}ft x {int(plot_l)}ft PLOT'.\n"
         "- Ground Floor laid out left, First Floor alongside it.\n"
-        "- Bottom Left: LEGEND (Walls/Doors/Windows). Bottom Right: VASTU COMPLIANCE box.\n\n"
+        "- Bottom Left: LEGEND (Walls/Doors/Windows).\n\n"
         "PROJECT SPECIFICS:\n"
         f"- Plot Dimensions: {plot_w}ft x {plot_l}ft plot. (You MUST annotate outer plot dimensions {plot_w}ft and {plot_l}ft with arrows!).\n"
         f"- Rooms: {', '.join(feature_list) if feature_list else 'Standard'}.\n"
         f"{gf_rule_text}\n"
-        "LAYOUT RULES (CRITICAL):\n"
-        f"- ENTRANCES: Place a MAIN ENTRANCE with a text label '{facing.upper()} MAIN ENTRANCE' and an arrow. The side with the Main Entrance is considered the {facing.upper()} side.\n"
-        "- ROUTING (CRITICAL FIX): Main Entrance MUST open DIRECTLY into a LIVING ROOM or LOBBY ONLY. Generating an entrance that opens into a BEDROOM, KITCHEN, or BATHROOM is a fatal failure.\n"
-        "- STAIRCASE (MANDATORY): A Staircase MUST be clearly drawn starting on the Ground Floor and continuing on the First Floor.\n"
-        "- EXITS: Provide an additional Secondary Exit / Back Door at the rear of the house.\n"
-        "- Kitchen connected to dining. Bedrooms/toilets visually private from entrance.\n"
-        "- Ensure practical, logical room placements.\n\n"
+        "LAYOUT & PLACEMENT RULES (CRITICAL):\n"
+        "1. ALL ROOMS, ENTRANCES, AND STAIRCASE MUST BE PLACED EXACTLY AS DICTATED IN THE 'ROOM_PLACEMENTS' SECTION BELOW.\n"
+        "2. Any deviation from the explicit 'ROOM_PLACEMENTS' mapping is a fatal failure.\n"
+        f"3. Strict user layout preferences: {layout_pref.upper()}. If 'Internal Stairs' is specified, the stairs MUST be fully enclosed within the main exterior walls of the house, NOT external.\n"
+        f"4. Parking MUST be placed in the front of the house, oriented towards the {facing} direction (facing the road).\n"
+        "5. The Kitchen and Dining Area MUST be directly adjacent to each other.\n\n"
         "DETAILING & SETBACKS (CRITICAL):\n"
-        "- Building must NOT touch plot walls. Must be visibly centered with green setbacks on all 4 sides.\n"
-        "- Label 4 side clearances using 'SETBACK [value in m]' ON the green space (no front/rear/ft labels).\n"
-        "- Wall thickness clearly shown. Doors have swing arcs (NO D1/D2 tags). Windows have NO W1/W2 tags.\n"
+        "- Building MUST NOT touch the plot walls. It MUST be visibly centered with an explicit, visually distinct wide green setback track enclosing the entire house.\n"
+        "- Ensure there is a highly visible, physically distinct gap between the outer boundary wall and the house's exterior walls.\n"
+        "- STRICTLY label ALL 4 side clearances (Front, Rear, Left, Right) using 'SETBACK [value in m]' ON the green space.\n"
+        "- ENTRANCE ANNOTATION: The Main Entrance MUST be explicitly annotated with a large text label 'MAIN ENTRANCE' and a directional arrow.\n"
+        "- Wall thickness clearly shown. Doors have swing arcs. Windows have W1/W2 tags.\n"
         "- ROOM LABELS: Every single room MUST have a large text label inside it (e.g. LIVING ROOM, KITCHEN, BEDROOM) + room dimensions.\n"
         f"- PLOT LABELS: Overall {plot_w}ft x {plot_l}ft dimensions must be drawn with arrowheads on the outer compound wall.\n\n"
-        "VASTU/KPBR RULES:\n"
+        "VASTU/KPBR RULES AND ROOM MAPPINGS:\n"
         f"{rule_block}\n\n"
         "DO NOT INCLUDE (FATAL ERRORS):\n"
-        "- DO NOT MAKE THE KITCHEN THE ENTRANCE. The Main Entrance MUST NOT lead into the Kitchen under any circumstances.\n"
         "- NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).\n"
-        "- NO blurry text. No unlabelled rooms. NO missing stairs on Ground Floor.\n"
+        "- NO blurry text. No unlabelled rooms.\n"
     )
 
 
@@ -159,22 +159,43 @@ def generate_prompt_from_dict(reqs: dict) -> str:
     layout_pref = reqs.get("layoutPreferences", "Open Kitchen, Internal Stairs")
     style = reqs.get("style", "Modern")
     built_up = reqs.get("builtUpArea", "1200")
-    prefer_gf = "Yes" if _yn(reqs.get("preferGroundFloorBedrooms", "No")) else "No"
-    gf_bedrooms = int(_safe_num(reqs.get("groundFloorBedrooms", "0"), 0))
+    print("\n--- 3A. Ground Floor Bedroom Preference ---")
+    reqs['preferGroundFloorBedrooms'] = "Yes" # ALWAYS ensure at least 1 ground floor bedroom via prompt injection, regardless of original input.
+    reqs['groundFloorBedrooms'] = reqs.get("groundFloorBedrooms", "1")
+    if int(_safe_num(reqs['groundFloorBedrooms'], 0)) < 1:
+        reqs['groundFloorBedrooms'] = "1"
+    
+    prefer_gf = "Yes" # Override prompt logic
+    gf_bedrooms = int(_safe_num(reqs.get("groundFloorBedrooms", "1"), 1))
+
+    feature_list = []
+    if _yn(reqs.get("kitchen", "Yes")): feature_list.append("Kitchen")
+    if _yn(reqs.get("livingRoom", "Yes")): feature_list.append("Living Room")
+    if _yn(reqs.get("diningArea", "Yes")): feature_list.append("Dining Area")
+    if _yn(reqs.get("poojaRoom", "Yes")): feature_list.append("Pooja Room")
+    if _yn(reqs.get("studyRoom", "No")): feature_list.append("Study Room")
+    if _yn(reqs.get("parking", "Yes")): feature_list.append("Parking")
+    
+    if floors.lower() not in {"ground", "g", "1", "single"}:
+        feature_list.append("Balcony (First Floor)")
 
     rag_query = (
-        "From Vastu and KPBR context, return ONLY concise CAD constraints for this residence. "
-        "Use exactly these headings and short bullet points under each heading:\n"
-        "1) VASTU_DIRECTION_RULES\n"
-        "2) VASTU_ADJACENCY_RULES\n"
-        "3) KPBR_SETBACK_RULES\n"
-        "4) DO_NOT_PLACE_RULES\n"
-        "5) DIMENSION_HINTS\n\n"
-        f"Project details: {plot_w} ft x {plot_l} ft, {facing}-facing, {floors}, "
-        f"{bedrooms} bedrooms ({gf_bedrooms} on GF: {prefer_gf}), {bathrooms} bathrooms, building type: {building_type}, "
-        f"built-up area target: {built_up} sqft, layout preferences: {layout_pref}, architectural style: {style}, "
-        f"vastu compliance preference: {vastu_level}.\n"
-        "Keep response under 250 words. No preface and no conclusion."
+        "You are an Expert Architectural Planner and Vastu Master. Based on the project details, you must assign an explicit visual layout location "
+        "and compass direction (e.g., Top-Right (Northeast), Bottom-Left (Southwest), Center) to EVERY single room requested, according to strict Vastu principles.\n\n"
+        "Return ONLY the following section. Do not output ANY other abstract rules or hints:\n"
+        "1) ROOM_PLACEMENTS (CRITICAL: You MUST break this down explicitly into '*Ground Floor Plan*' and '*First Floor Plan*' (if G+1 or more). "
+        "For EACH floor, list EVERY room, its exact visual location (Top/Bottom/Left/Right/Center) AND direction, and extremely short *Reasoning: (Max 7 words). ONLY provide reasoning if directly citing a specific Vastu rule; otherwise omit reasoning entirely. "
+        f"Example format: '*Main Entrance*: Center-Right (East). Opens into Living Room. *Reasoning: Auspicious for {facing}-facing.' "
+        "The Main Entrance MUST explicitly state it opens directly into the Living Room (or Lobby). "
+        f"The Parking MUST be placed in the {facing} direction (front of the house). "
+        "The Kitchen MUST be placed adjacent to the Dining Area. "
+        "Ensure every requested room, bathroom, entrance, and stair is placed.)\n\n"
+        f"Project details: {plot_w} ft x {plot_l} ft, {facing}-facing plot, {floors}, "
+        f"{bedrooms} bedrooms ({gf_bedrooms} on GF MUST BE INCLUDED), {bathrooms} bathrooms, building type: {building_type}.\n"
+        f"MUST ASSIGN LOCATIONS FOR: Main Entrance, Stairs, {', '.join(feature_list) if feature_list else 'Standard rooms'}, {bedrooms} Bedrooms, {bathrooms} Bathrooms.\n"
+        f"Layout preferences: {layout_pref}, architectural style: {style}, "
+        f"vastu compliance preference: {vastu_level}. "
+        "Keep response under 450 words. No conversational filler or preamble."
     )
 
     try:

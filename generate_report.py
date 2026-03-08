@@ -27,7 +27,7 @@ def generate_vastu_report():
         llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
         
         template = """
-        You are a Master Vastu Shastra Consultant and Architect.
+        You are a Master Vastu Shastra Consultant and Expert Architect.
         Based on the following 2D floor plan generation prompt that was just executed, 
         create a highly professional, exactly 8-section Markdown compliance report.
         
@@ -36,34 +36,34 @@ def generate_vastu_report():
         
         Your report MUST exactly follow this 8-section structure using these exact headers and emojis:
         
-        ## 1️⃣ Project Overview
-        (Basic details, dimensions, facing in bullet points)
+        ## 1️⃣ Project Overview & User Inputs
+        (Use a clean Markdown table to list ALL raw architectural inputs provided by the user.
+        Include rows for: Plot Dimensions, Facing Direction, Total Floors, Building Type, Total Bedrooms requested, Ground Floor Preferences, and Room Layout constraints.)
         
-        ## 2️⃣ Generated Floor Plan Summary
-        (Short paragraph layout explanation, room positions)
+        ## 2️⃣ Floor Plan Layout Summary
+        (A clear, professional architectural paragraph explaining the spatial organization and layout flow.)
         
         ## 3️⃣ Vastu Compliance Analysis
-        (Detailed evaluation of room placements. MUST bold the evaluation word, e.g., "**Main Entrance (North): Excellent.**" or "**Good.**" or "**Mixed.**")
+        (Provide a detailed evaluation of room placements using a Markdown table. 
+        Columns exactly as follows: | Space/Room | Placed Direction | Vastu Rule/Principle | Status |
+        For Status, use bold evaluative text like **Excellent**, **Good**, or **Non-Compliant**.)
         
-        ## 4️⃣ KPBR / Building Rule Compliance
-        (Local regulation constraints check. For setbacks, use a sub-bullet list formatting like:
-        * Setbacks:
-          * Front Setback (North): 3 meters - **Compliant.**
-          * Rear Setback (South): 1 meter - **Compliant.**)
+        ## 4️⃣ Constraints & Dimensional Rules
+        (Evaluate adherence to local regulation constraints and explicit user overrides. Detail setbacks, building rules, or special user requests (like 'Parking in front'). Use bullet points or a table.)
           
-        ## 5️⃣ Vastu Score / Compliance Score
-        (Numerical score out of 100 with a breakdown of points)
+        ## 5️⃣ Vastu / Compliance Score
+        (Prominently display a numerical score out of 100. Provide a short, structured breakdown of how the points were awarded.)
         
-        ## 6️⃣ Detected Issues / Violations
-        (Numbered list if any rules are broken. If none, write "None.")
+        ## 6️⃣ Detected Issues & Violations
+        (Numbered list if any rules are broken. Provide clear impact statements. If none, write "No major issues detected. Layout is highly compliant.")
         
-        ## 7️⃣ Recommendations
-        (Numbered list of suggestions to improve)
+        ## 7️⃣ Actionable Recommendations
+        (Numbered list of highly professional architectural and Vastu suggestions to optimize the layout further.)
         
         ## 8️⃣ Final Compliance Status
-        (A single bold phrase: e.g., **MINOR CHANGES NEEDED.** or **FULLY COMPLIANT.**)
+        (A striking final conclusion statement in bold, e.g., **MINOR CHANGES RECOMMENDED** or **FULLY COMPLIANT MASTER PLAN**)
         
-        Format beautifully with bolding, lists, and markdown headers. No introduction or conclusion paragraphs outside these 8 sections.
+        Format beautifully with modern markdown tables, bold text, bulleted lists, and headers. Ensure the tone is extremely professional, authoritative, and structured like a high-end architectural consultant report. Do not include introductory or concluding conversational filler.
         """
         
         prompt = PromptTemplate(input_variables=["plan_details"], template=template)

@@ -56,7 +56,7 @@ def main():
             model="gpt-image-1.5",
             prompt=prompt,
             size="1536x1024",
-            quality="auto",
+            quality="high",
             n=1,
         )
 

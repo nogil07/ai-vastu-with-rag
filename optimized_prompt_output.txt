@@ -1,4 +1,4 @@
-Create an highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).
+Create an ultra realistic and highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).
 
 STYLE:
 - Pure white background outside plot, white inner floors with colored, realistic modern furniture.
@@ -7,56 +7,50 @@ STYLE:
 COMPOSITION:
 - Top center: 'EAST-FACING INDEPENDENT HOUSE' and '30ft x 40ft PLOT'.
 - Ground Floor laid out left, First Floor alongside it.
-- Bottom Left: LEGEND (Walls/Doors/Windows). Bottom Right: VASTU COMPLIANCE box.
+- Bottom Left: LEGEND (Walls/Doors/Windows).
 
 PROJECT SPECIFICS:
 - Plot Dimensions: 30.0ft x 40.0ft plot. (You MUST annotate outer plot dimensions 30.0ft and 40.0ft with arrows!).
-- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, Parking.
-- Ground floor bedroom preference: NO specific count required.
+- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Parking.
+- Ground floor bedroom preference: YES. Place exactly 1 bedroom(s) on Ground Floor.
 
-LAYOUT RULES (CRITICAL):
-- ENTRANCES: Place a MAIN ENTRANCE with a text label 'EAST MAIN ENTRANCE' and an arrow. The side with the Main Entrance is considered the EAST side.
-- ROUTING (CRITICAL FIX): Main Entrance MUST open DIRECTLY into a LIVING ROOM or LOBBY ONLY. Generating an entrance that opens into a BEDROOM, KITCHEN, or BATHROOM is a fatal failure.
-- STAIRCASE (MANDATORY): A Staircase MUST be clearly drawn starting on the Ground Floor and continuing on the First Floor.
-- EXITS: Provide an additional Secondary Exit / Back Door at the rear of the house.
-- Kitchen connected to dining. Bedrooms/toilets visually private from entrance.
-- Ensure practical, logical room placements.
+LAYOUT & PLACEMENT RULES (CRITICAL):
+1. ALL ROOMS, ENTRANCES, AND STAIRCASE MUST BE PLACED EXACTLY AS DICTATED IN THE 'ROOM_PLACEMENTS' SECTION BELOW.
+2. Any deviation from the explicit 'ROOM_PLACEMENTS' mapping is a fatal failure.
+3. Strict user layout preferences: OPEN KITCHEN, INTERNAL STAIRS. If 'Internal Stairs' is specified, the stairs MUST be fully enclosed within the main exterior walls of the house, NOT external.
+4. Parking MUST be placed in the front of the house, oriented towards the East direction (facing the road).
+5. The Kitchen and Dining Area MUST be directly adjacent to each other.
 
 DETAILING & SETBACKS (CRITICAL):
-- Building must NOT touch plot walls. Must be visibly centered with green setbacks on all 4 sides.
-- Label 4 side clearances using 'SETBACK [value in m]' ON the green space (no front/rear/ft labels).
-- Wall thickness clearly shown. Doors have swing arcs (NO D1/D2 tags). Windows have NO W1/W2 tags.
+- Building MUST NOT touch the plot walls. It MUST be visibly centered with an explicit, visually distinct wide green setback track enclosing the entire house.
+- Ensure there is a highly visible, physically distinct gap between the outer boundary wall and the house's exterior walls.
+- STRICTLY label ALL 4 side clearances (Front, Rear, Left, Right) using 'SETBACK [value in m]' ON the green space.
+- ENTRANCE ANNOTATION: The Main Entrance MUST be explicitly annotated with a large text label 'MAIN ENTRANCE' and a directional arrow.
+- Wall thickness clearly shown. Doors have swing arcs. Windows have W1/W2 tags.
 - ROOM LABELS: Every single room MUST have a large text label inside it (e.g. LIVING ROOM, KITCHEN, BEDROOM) + room dimensions.
 - PLOT LABELS: Overall 30.0ft x 40.0ft dimensions must be drawn with arrowheads on the outer compound wall.
 
-VASTU/KPBR RULES:
-### 1) VASTU_DIRECTION_RULES
-*   Main entrance: East, Northeast, or North of Northeast.
-*   Living room: Front of the house, facing East or North.
-*   Male bedrooms: West or Northwest.
+VASTU/KPBR RULES AND ROOM MAPPINGS:
+1) ROOM_PLACEMENTS
+*Ground Floor Plan*
+*Main Entrance*: Center-Right (East). Opens into Living Room. *Reasoning: Located in the East for positive energy flow.*
+*Parking*: Front (East). *Reasoning: Explicitly placed in East direction.*
+*Living Room*: Top-Right (Northeast/East). *Reasoning: Forefront, not West/South side of front.*
+*Pooja Room*: Top-Right corner (Northeast). *Reasoning: Positive zone for deities.*
+*Kitchen*: Bottom-Right (Southeast). Adjacent to Dining Area. *Reasoning: Auspicious for fire element.*
+*Dining Area*: Center-South (South). Adjacent to Kitchen. *Reasoning: Best found Northwest of kitchen.*
+*Bedroom 1*: Bottom-Left (Southwest). *Reasoning: Stable zone for a bedroom.*
+*Bathroom 1*: Top-Left (Northwest). Common. *Reasoning: Suitable for waste disposal.*
+*Stairs*: Center-Left (West). Rising to First Floor.
 
-### 2) VASTU_ADJACENCY_RULES
-*   Living room: Not on the West or South side of the front room.
-*   Staircase: Avoid North or East sides.
-*   Prayer room, safe, toilet: Not directly under a staircase.
-
-### 3) KPBR_SETBACK_RULES
-*   Distance between buildings (up to 10m height): 1.25m (within a layout).
-*   Distance between buildings (up to 8m height, single/dual unit residential): 1.50m.
-*   Side yards: May not be provided for commercial occupancy in zoned areas if owner agrees.
-
-### 4) DO_NOT_PLACE_RULES
-*   Main entrance: Not facing a wall, road intersection, or dead-end road.
-*   Shadow: Not looming on the main door.
-*   Large trees or lamp posts: Not blocking the entrance.
-*   Main entrance: Not in the center or extreme corners.
-*   Staircase: Circular not recommended.
-
-### 5) DIMENSION_HINTS
-*   Built-up area target: 1200 sqft.
-*   Even number of steps for stairs leading to the main entrance.
+*First Floor Plan*
+*Stairs Landing*: Center-Left (West).
+*Bedroom 2 (Master)*: Bottom-Left (Southwest). *Reasoning: Master bedroom on second level, Southwest.*
+*Bathroom 2*: Attached to Bedroom 2, Left (West).
+*Bedroom 3*: Top-Left (Northwest). *Reasoning: For male family members, West/Northwest.*
+*Bathroom 3*: Attached to Bedroom 3, Top (North).
+*Balcony*: Right (East). *Reasoning: Veranda concept affixed to entrance side.*
 
 DO NOT INCLUDE (FATAL ERRORS):
-- DO NOT MAKE THE KITCHEN THE ENTRANCE. The Main Entrance MUST NOT lead into the Kitchen under any circumstances.
 - NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).
-- NO blurry text. No unlabelled rooms. NO missing stairs on Ground Floor.
+- NO blurry text. No unlabelled rooms.
