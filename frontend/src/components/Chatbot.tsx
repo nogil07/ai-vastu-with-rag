@@ -57,18 +57,16 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
     setIsTyping(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: input,
-        config: {
-          systemInstruction: "You are Vasuttan AI, a friendly and expert architectural assistant. You specialize in Vastu Shastra, modern home design, and regulation-compliant layouts. Keep your responses helpful, concise, and professional.",
-        },
+      const res = await fetch('http://localhost:8080/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: input }),
       });
+      const data = await res.json();
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: response.text || "I'm sorry, I couldn't process that. Could you rephrase?",
+        text: data.response || "I'm sorry, I couldn't process that. Could you rephrase?",
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -97,37 +95,36 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
             initial={{ opacity: 0, y: 40, scale: 0.9, rotate: 2 }}
             animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, y: 40, scale: 0.9, rotate: -2 }}
-            className={`mb-6 w-[92vw] sm:w-[320px] h-[480px] max-h-[75vh] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] flex flex-col border border-white/20 relative ${
-              isDark 
-                ? 'bg-slate-900/30 backdrop-blur-[40px] text-white' 
-                : 'bg-white/30 backdrop-blur-[40px] text-slate-900'
-            }`}
+            className={`mb-6 w-[92vw] sm:w-[320px] h-[480px] max-h-[75vh] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] flex flex-col border border-white/20 relative ${isDark
+              ? 'bg-slate-900/30 backdrop-blur-[40px] text-white'
+              : 'bg-white/30 backdrop-blur-[40px] text-slate-900'
+              }`}
           >
             {/* Liquid Background Blobs */}
             <div className="absolute inset-0 -z-10 overflow-hidden opacity-40 pointer-events-none">
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   scale: [1, 1.2, 1],
                   x: [0, 20, 0],
                   y: [0, -20, 0]
                 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] rounded-full bg-primary-accent/30 blur-[60px]" 
+                className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] rounded-full bg-primary-accent/30 blur-[60px]"
               />
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   scale: [1, 1.3, 1],
                   x: [0, -30, 0],
                   y: [0, 30, 0]
                 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] rounded-full bg-blue-500/20 blur-[60px]" 
+                className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] rounded-full bg-blue-500/20 blur-[60px]"
               />
             </div>
 
             {/* Top Status Bar */}
             <div className={`h-1 w-full ${isDark ? 'bg-white/10' : 'bg-black/10'} flex overflow-hidden`}>
-              <motion.div 
+              <motion.div
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 className="w-1/2 h-full bg-gradient-to-r from-transparent via-primary-accent/50 to-transparent"
@@ -139,13 +136,13 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
               <div className="flex items-center gap-3">
                 <div className="relative group">
                   <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/20 shadow-lg transition-transform duration-500 group-hover:scale-110">
-                    <video 
-                      src="/vasuttan2.mp4" 
-                      autoPlay 
-                      loop 
-                      muted 
+                    <video
+                      src="/vasuttan2.mp4"
+                      autoPlay
+                      loop
+                      muted
                       playsInline
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover translate-y-2"
                     />
                   </div>
                   <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white/40 shadow-sm" />
@@ -157,7 +154,7 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
                   </div>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className={`p-2 rounded-xl transition-all active:scale-90 ${isDark ? 'hover:bg-white/10' : 'hover:bg-black/10'}`}
               >
@@ -175,13 +172,12 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`flex flex-col gap-1 max-w-[88%] ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                    <div className={`px-3 py-2 rounded-2xl text-xs leading-relaxed shadow-sm backdrop-blur-md border ${
-                      msg.sender === 'user' 
-                        ? 'bg-primary-accent/80 text-white rounded-tr-none border-white/20' 
-                        : isDark 
-                          ? 'bg-white/10 text-slate-100 rounded-tl-none border-white/10' 
-                          : 'bg-black/5 text-slate-800 rounded-tl-none border-black/5'
-                    }`}>
+                    <div className={`px-3 py-2 rounded-2xl leading-relaxed shadow-sm backdrop-blur-md border text-[10px] font-mono font-bold tracking-[0.2em] ${msg.sender === 'user'
+                      ? 'bg-primary-accent/80 text-white rounded-tr-none border-white/20'
+                      : isDark
+                        ? 'bg-white/10 text-slate-100 rounded-tl-none border-white/10'
+                        : 'bg-black/5 text-slate-800 rounded-tl-none border-black/5'
+                      }`}>
                       {msg.text}
                     </div>
                   </div>
@@ -201,9 +197,8 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
 
             {/* Input Area */}
             <div className="p-4 pt-2 border-t border-white/10 flex-shrink-0">
-              <div className={`flex items-center gap-2 p-1 rounded-xl border transition-all focus-within:ring-2 focus-within:ring-primary-accent/30 ${
-                isDark ? 'bg-black/20 border-white/10' : 'bg-white/20 border-black/10'
-              }`}>
+              <div className={`flex items-center gap-2 p-1 rounded-xl border transition-all focus-within:ring-2 focus-within:ring-primary-accent/30 ${isDark ? 'bg-black/20 border-white/10' : 'bg-white/20 border-black/10'
+                }`}>
                 <input
                   type="text"
                   value={input}
@@ -236,15 +231,14 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
               initial={{ opacity: 0, x: 20, scale: 0.8, filter: 'blur(10px)' }}
               animate={{ opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, x: 20, scale: 0.8, filter: 'blur(10px)' }}
-              className={`absolute bottom-[110%] right-0 mb-4 p-3 rounded-2xl shadow-2xl border border-white/30 backdrop-blur-2xl whitespace-nowrap overflow-hidden ${
-                isDark ? 'bg-slate-900/40 text-white' : 'bg-white/40 text-slate-900'
-              }`}
+              className={`absolute bottom-[110%] right-0 mb-4 p-3 rounded-2xl shadow-2xl border border-white/30 backdrop-blur-2xl whitespace-nowrap overflow-hidden ${isDark ? 'bg-slate-900/40 text-white' : 'bg-white/40 text-slate-900'
+                }`}
             >
               {/* Popup Liquid Background */}
               <div className="absolute inset-0 -z-10 opacity-30">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-accent/20 to-blue-500/20 animate-pulse" />
               </div>
-              
+
               <div className="flex items-center gap-3 relative z-10">
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20">
                   <Sparkles size={16} className="text-primary-accent" />
@@ -252,9 +246,8 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
                 <span className="text-xs font-bold tracking-tight">Hi, I am Vasuttan AI</span>
               </div>
               {/* Triangle pointer */}
-              <div className={`absolute bottom-[-6px] right-8 w-3 h-3 rotate-45 border-r border-b border-white/30 ${
-                isDark ? 'bg-slate-900/40' : 'bg-white/40'
-              }`} />
+              <div className={`absolute bottom-[-6px] right-8 w-3 h-3 rotate-45 border-r border-b border-white/30 ${isDark ? 'bg-slate-900/40' : 'bg-white/40'
+                }`} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -269,23 +262,22 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
             setIsOpen(!isOpen);
             setShowInitialPopup(false);
           }}
-          className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 relative group ${
-            isOpen ? 'border-primary-accent' : 'border-white/40 hover:border-primary-accent'
-          }`}
+          className={`w-32 h-40 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 relative group ${isOpen ? 'border-primary-accent' : 'border-white/40 hover:border-primary-accent'
+            }`}
         >
-          <video 
+          <video
             ref={videoRef}
-            src="/vasuttan2.mp4" 
-            autoPlay 
-            loop 
-            muted 
+            src="/vasuttan2.mp4"
+            autoPlay
+            loop
+            muted
             playsInline
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover object-[center_25%] transition-transform duration-700 group-hover:scale-110"
           />
-          
+
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-             <MessageSquare size={24} className="text-white drop-shadow-lg" />
+            <MessageSquare size={24} className="text-white drop-shadow-lg" />
           </div>
 
           {/* Open state overlay */}

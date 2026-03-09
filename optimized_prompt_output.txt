@@ -5,12 +5,12 @@ STYLE:
 - Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.
 
 COMPOSITION:
-- Top center: 'EAST-FACING VILLA' and '30ft x 40ft PLOT'.
+- Top center: 'EAST-FACING INDEPENDENT HOUSE' and '40ft x 50ft PLOT'.
 - Ground Floor laid out left, First Floor alongside it.
 - Bottom Left: LEGEND (Walls/Doors/Windows).
 
 PROJECT SPECIFICS:
-- Plot Dimensions: 30.0ft x 40.0ft plot. (You MUST annotate outer plot dimensions 30.0ft and 40.0ft with arrows!).
+- Plot Dimensions: 40.0ft x 50.0ft plot. (You MUST annotate outer plot dimensions 40.0ft and 50.0ft with arrows!).
 - Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, Parking.
 - Ground floor bedroom preference: YES. Place exactly 1 bedroom(s) on Ground Floor.
 
@@ -28,29 +28,59 @@ DETAILING & SETBACKS (CRITICAL):
 - ENTRANCE ANNOTATION: The Main Entrance MUST be explicitly annotated with a large text label 'MAIN ENTRANCE' and a directional arrow.
 - Wall thickness clearly shown. Doors have swing arcs. Windows have W1/W2 tags.
 - ROOM LABELS: Every single room MUST have a large text label inside it (e.g. LIVING ROOM, KITCHEN, BEDROOM) + room dimensions.
-- PLOT LABELS: Overall 30.0ft x 40.0ft dimensions must be drawn with arrowheads on the outer compound wall.
+- PLOT LABELS: Overall 40.0ft x 50.0ft dimensions must be drawn with arrowheads on the outer compound wall.
 
 VASTU/KPBR RULES AND ROOM MAPPINGS:
-*Ground Floor Plan*
+**ROOM_PLACEMENTS**
 
-*Main Entrance*: Top-Right (East). Opens into Living Room. *Reasoning: Positive energy flow.*
-*Parking*: Bottom-Right (East).
-*Stairs*: Center-Left (West).
-*Living Room*: Center (East/North). *Reasoning: Forefront of the house.*
-*Kitchen*: Bottom-Right (Southeast). Adjacent to Dining Area. *Reasoning: Southeast corner.*
-*Dining Area*: Bottom-Center (South/Southeast). Adjacent to Kitchen. *Reasoning: Near kitchen.*
-*Pooja Room*: Top-Left (Northeast).
-*Study Room*: Top-Center (North).
-*Bedroom 1*: Bottom-Left (Southwest). Master Bedroom. *Reasoning: Southwest is master's.*
-*Bathroom 1*: Bottom-Left (West). Attached to Bedroom 1. *Reasoning: West or Northwest.*
-*Bathroom 2*: Bottom-Center (South).
+**Ground Floor Plan**
 
-*First Floor Plan*
+*   **Main Entrance**: Right (East). Opens into Living Room.
+    *   *Reasoning*: As the plot faces East, placing the main entrance in the East pada is crucial for inviting positive solar energy and prosperity, aligning with Vastu principles for a vibrant home. This location ensures morning sunlight enters the primary living space, promoting a healthy and energetic atmosphere.
 
-*Balcony*: Top-Right (East).
-*Bedroom 2*: Bottom-Left (West). Male member. *Reasoning: West or Northwest.*
-*Bathroom 3*: Bottom-Left (Northwest). Attached to Bedroom 2. *Reasoning: West or Northwest.*
-*Bedroom 3*: Bottom-Right (South). Female member. *Reasoning: South or Southeast.*
+*   **Parking**: Front-Center (East).
+    *   *Reasoning*: Situated in the East, the direction the plot faces, the parking area allows for convenient access and avoids obstructing the main entrance, while adhering to the principle of placing the parking in the facing direction of the plot.
+
+*   **Living Room**: Center-Right (East/Northeast).
+    *   *Reasoning*: Positioned in the East/Northeast zone, the living room receives ample morning sunlight and positive cosmic energies, fostering a harmonious and welcoming environment for residents and guests. This placement aligns with Vastu recommendations for the primary gathering space to be in a bright and energetic area.
+
+*   **Pooja Room**: Center-Left (West/Northwest).
+    *   *Reasoning*: Located in the West/Northwest, this placement is considered auspicious for prayer and meditation, allowing for a peaceful and spiritually charged atmosphere away from the main thoroughfares of the house. This area is considered a negative zone for heavy furnishings, making it suitable for a serene Pooja space.
+
+*   **Bedroom 1 (GF)**: Bottom-Left (Southwest).
+    *   *Reasoning*: The Southwest is designated for the Master Bedroom or for adult family members, promoting stability, longevity, and commanding forces due to its association with Earth and stability. This placement ensures a restful and secure environment for the occupant.
+
+*   **Bathroom 1**: Adjacent to Bedroom 1, Bottom-Center (South).
+    *   *Reasoning*: Situated in the South, this location is acceptable for a bathroom and is conveniently accessible from Bedroom 1 without directly impacting the main living areas or Pooja room.
+
+*   **Kitchen**: Bottom-Right (Southeast).
+    *   *Reasoning*: The Southeast is the ideal Vastu direction for the kitchen, as it is governed by Agni (Fire), ensuring proper ventilation, natural light, and a safe cooking environment that promotes good health and prosperity.
+
+*   **Dining Area**: Adjacent to Kitchen, Center (East/Southeast).
+    *   *Reasoning*: Positioned adjacent to the kitchen in the East/Southeast zone, the dining area benefits from positive energies associated with nourishment and communal gathering, facilitating enjoyable meals in a well-lit space.
+
+*   **Stairs**: Left (West).
+    *   *Reasoning*: The West is a suitable direction for internal stairs, as placing them in the North or East can lead to loss of wealth. This placement ensures structural integrity and avoids blocking natural light in primary living areas.
+
+*   **Study Room**: Center-Left (Northwest).
+    *   *Reasoning*: The Northwest is conducive for a study room, promoting focus, clarity, and intellectual growth due to its association with air and movement, aiding in productive learning and work.
+
+**First Floor Plan**
+
+*   **Bedroom 2**: Bottom-Left (Southwest).
+    *   *Reasoning*: The Southwest is the ideal location for the Master Bedroom or for adult married children, providing a sense of security, stability, and commanding energy for restful sleep and well-being.
+
+*   **Bedroom 3**: Bottom-Right (Southeast).
+    *   *Reasoning*: The Southeast is recommended for female family members, ensuring good health and happiness, and this placement offers a balanced and auspicious environment for the occupant.
+
+*   **Bathroom 2**: Adjacent to Bedroom 2, Left-Center (West).
+    *   *Reasoning*: Located in the West, this bathroom is conveniently placed for Bedroom 2 and does not interfere with primary Vastu zones, ensuring functional utility.
+
+*   **Bathroom 3**: Adjacent to Bedroom 3, Right-Center (East).
+    *   *Reasoning*: Positioned in the East, this bathroom is accessible from Bedroom 3 and benefits from the positive energies of the East, ensuring a clean and well-ventilated facility.
+
+*   **Balcony (First Floor)**: Front-Right (East).
+    *   *Reasoning*: A balcony on the East side of the first floor allows for the capture of morning sunlight and positive energies, providing a refreshing outdoor space that enhances the well-being of the occupants.
 
 DO NOT INCLUDE (FATAL ERRORS):
 - NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).

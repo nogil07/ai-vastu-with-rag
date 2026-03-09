@@ -4,15 +4,32 @@ import json
 import os
 import smtplib
 from email.message import EmailMessage
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from user_input import generate_prompt_from_dict
 from generate_image import main as generate_image_main
 from generate_report import generate_vastu_report
 from generate_pdf import generate_pdf_report
+from rag_chatbot import get_chatbot_response
 
 app = Flask(__name__)
-# Enable CORS for all routes so the React frontend can talk to us
 CORS(app)
+
+@app.route("/api/chat", methods=["POST"])
+def chat():
+    try:
+        data = request.get_json()
+        query = data.get("query", "")
+        if not query:
+            return jsonify({"status": "error", "detail": "Empty query"}), 400
+        
+        response = get_chatbot_response(query)
+        return jsonify({"status": "success", "response": response})
+    except Exception as e:
+        print(f"Chatbot error: {e}")
+        return jsonify({"status": "error", "detail": str(e)}), 500
 
 @app.route("/api/generate", methods=["POST"])
 def generate_plan():
@@ -100,8 +117,9 @@ def send_email():
         if not os.path.exists(pdf_path):
             return jsonify({"status": "error", "detail": "PDF not found to email"}), 404
 
-        sender = os.getenv("SMTP_EMAIL")
-        password = os.getenv("SMTP_PASSWORD")
+        sender = os.getenv("EMAIL_USER")
+        password = os.getenv("EMAIL_PASS")
+        print(f"DEBUG: Attempting to send email via {sender}")
         host = os.getenv("SMTP_HOST", "smtp.gmail.com")
         port = int(os.getenv("SMTP_PORT", 587))
 
@@ -127,8 +145,10 @@ def send_email():
 
         return jsonify({"status": "success", "message": "Email sent successfully"})
     except Exception as e:
+        import traceback
         print(f"Error sending email: {e}")
-        return jsonify({"status": "error", "detail": "Failed to send email"}), 500
+        traceback.print_exc()
+        return jsonify({"status": "error", "detail": f"Failed to send email: {str(e)}"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080, host="0.0.0.0")

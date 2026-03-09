@@ -102,12 +102,13 @@
 }
 
 .glass-card {
-  @apply bg-glass-bg backdrop-blur-lg border border-glass-border shadow-[0_8px_32px_0_rgba(135, 118, 103, 0.1)] transition-all duration-500;
+  @apply bg-glass-bg backdrop-blur-lg border border-glass-border transition-all duration-500;
+  box-shadow: 0 8px 32px 0 rgba(135, 118, 103, 0.1);
   will-change: transform, opacity;
 }
 
 .dark .glass-card {
-  @apply shadow-[0_8px_32px_0_rgba(0, 0, 0, 0.4)];
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
 .grain-overlay {

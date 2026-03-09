@@ -66,16 +66,16 @@ export const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose }) => {
                     initial={{ scale: 0.95, opacity: 0, y: 20 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                    className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2rem] shadow-2xl overflow-hidden border border-border-main"
+                    className="relative w-full max-w-md glass-card bg-bg-surface/90 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl overflow-hidden border border-border-main/50"
                 >
-                    <div className="p-6 sm:p-8">
-                        <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-2xl font-serif font-bold text-text-main">Email Report</h3>
+                    <div className="p-8 sm:p-10">
+                        <div className="flex justify-between items-center mb-8">
+                            <h3 className="text-3xl font-serif font-bold text-text-main tracking-tight">Email Report</h3>
                             <button
                                 onClick={onClose}
-                                className="p-2 rounded-full hover:bg-bg-surface transition-colors text-text-muted hover:text-text-main"
+                                className="p-2.5 rounded-2xl bg-bg-main/50 hover:bg-bg-main transition-all text-text-muted hover:text-text-main active:scale-90"
                             >
-                                <X size={20} />
+                                <X size={22} />
                             </button>
                         </div>
 
@@ -83,55 +83,60 @@ export const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose }) => {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="flex flex-col items-center justify-center py-8 text-center"
+                                className="flex flex-col items-center justify-center py-10 text-center"
                             >
-                                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 mb-4">
-                                    <CheckCircle size={32} />
+                                <div className="w-20 h-20 bg-emerald-500/10 rounded-3xl flex items-center justify-center text-emerald-500 mb-6 shadow-inner">
+                                    <CheckCircle size={40} />
                                 </div>
-                                <h4 className="text-xl font-bold text-text-main mb-2">Sent Successfully!</h4>
-                                <p className="text-text-muted text-sm">Your Vastu report has been emailed.</p>
+                                <h4 className="text-2xl font-serif font-bold text-text-main mb-3">Sent Successfully!</h4>
+                                <p className="text-text-muted text-base">Your Vastu report has been emailed.</p>
                             </motion.div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-5">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted ml-1">Full Name</label>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="space-y-2.5">
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-accent ml-1.5">Full Name</label>
                                     <input
                                         type="text"
                                         required
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
-                                        className="w-full bg-bg-surface border border-border-main rounded-xl px-4 py-3 text-text-main focus:ring-2 focus:ring-primary-accent/50 outline-none transition-all placeholder:text-text-muted/50"
+                                        className="w-full bg-bg-main/50 border border-border-main rounded-2xl px-5 py-4 text-text-main focus:border-primary-accent focus:ring-4 focus:ring-primary-accent/10 outline-none transition-all placeholder:text-text-muted/30 font-medium"
                                         placeholder="John Doe"
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted ml-1">Email Address</label>
+                                <div className="space-y-2.5">
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-accent ml-1.5">Email Address</label>
                                     <input
                                         type="email"
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full bg-bg-surface border border-border-main rounded-xl px-4 py-3 text-text-main focus:ring-2 focus:ring-primary-accent/50 outline-none transition-all placeholder:text-text-muted/50"
+                                        className="w-full bg-bg-main/50 border border-border-main rounded-2xl px-5 py-4 text-text-main focus:border-primary-accent focus:ring-4 focus:ring-primary-accent/10 outline-none transition-all placeholder:text-text-muted/30 font-medium"
                                         placeholder="john@example.com"
                                     />
                                 </div>
 
                                 {errorMsg && (
-                                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500 text-sm font-medium">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="p-4 bg-red-500/5 border border-red-500/20 rounded-2xl text-red-500 text-sm font-bold flex items-center gap-2"
+                                    >
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                                         {errorMsg}
-                                    </div>
+                                    </motion.div>
                                 )}
 
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full flex items-center justify-center gap-2 bg-primary-accent text-btn-text px-6 py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-lg shadow-primary-accent/20 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                                    className="w-full flex items-center justify-center gap-3 bg-primary-accent text-btn-text px-6 py-5 rounded-2xl font-bold hover:opacity-90 transition-all shadow-xl shadow-primary-accent/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
                                 >
                                     {loading ? (
-                                        <div className="w-5 h-5 border-2 border-btn-text/30 border-t-btn-text rounded-full animate-spin" />
+                                        <div className="w-6 h-6 border-2 border-btn-text/30 border-t-btn-text rounded-full animate-spin" />
                                     ) : (
                                         <>
-                                            <Send size={18} />
+                                            <Send size={20} />
                                             Send PDF Report
                                         </>
                                     )}

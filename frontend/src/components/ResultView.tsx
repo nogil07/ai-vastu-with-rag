@@ -94,42 +94,44 @@ export const ResultView: React.FC<ResultViewProps> = ({ onBack }) => {
                     </div>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-12 gap-10 items-start">
-                    {/* Left Column: Image */}
+                <div className="flex flex-col items-center gap-12 max-w-5xl mx-auto">
+                    {/* Centered Image */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="lg:col-span-7 sticky top-24"
+                        className="w-full"
                     >
-                        <div className="glass-card rounded-[2rem] p-2 sm:p-4 overflow-hidden border border-border-main/50 shadow-2xl relative group">
+                        <div className="glass-card rounded-[2.5rem] p-3 sm:p-6 overflow-hidden border border-border-main/50 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] relative group bg-white/40 backdrop-blur-xl">
                             <div className="absolute inset-0 bg-primary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                             <img
                                 src="http://localhost:8080/api/result/image"
                                 alt="Generated Vastu Plan"
-                                className="w-full h-auto rounded-[1.5rem] object-cover shadow-sm bg-white"
+                                className="w-full h-auto rounded-[2rem] object-cover shadow-2xl bg-white border border-border-main/20"
                                 onError={(e) => {
-                                    (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/1a1a1a/cccccc?text=Image+Generating/Unavailable';
+                                    (e.target as HTMLImageElement).src = 'https://placehold.co/1200x800/f8fafc/64748b?text=Blueprint+Rendering...';
                                 }}
                             />
                         </div>
                     </motion.div>
 
-                    {/* Right Column: Markdown Report */}
+                    {/* Report Section Below */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="lg:col-span-5"
+                        className="w-full"
                     >
-                        <div className="glass-card rounded-[2rem] p-8 sm:p-10 border border-border-main/50 text-text-main leading-relaxed shadow-xl max-w-none hover:shadow-2xl transition-shadow duration-500">
-                            <div className="prose prose-slate dark:prose-invert max-w-none 
-                prose-h1:font-serif prose-h1:text-4xl prose-h1:font-medium prose-h1:mb-8 prose-h1:text-text-main prose-h1:tracking-tight
-                prose-h2:font-serif prose-h2:text-2xl prose-h2:font-medium prose-h2:text-primary-accent prose-h2:border-b-2 prose-h2:border-primary-accent/20 prose-h2:pb-4 prose-h2:mt-12 prose-h2:tracking-wide
-                prose-h3:font-sans prose-h3:text-sm prose-h3:uppercase prose-h3:tracking-widest prose-h3:font-bold prose-h3:text-text-main prose-h3:mt-8
-                prose-p:text-text-muted prose-p:leading-loose prose-p:text-sm
-                prose-ul:text-text-muted prose-ul:text-sm prose-li:marker:text-primary-accent prose-li:leading-relaxed
-                prose-strong:text-text-main prose-strong:font-bold
+                        <div className="glass-card rounded-[3rem] p-10 sm:p-16 border border-border-main/50 text-text-main leading-relaxed shadow-2xl bg-white/60 backdrop-blur-2xl hover:shadow-[0_48px_96px_-24px_rgba(0,0,0,0.15)] transition-all duration-700">
+                            <div className="prose prose-slate max-w-none 
+                prose-headings:font-serif prose-headings:tracking-tight
+                prose-h1:text-4xl prose-h1:font-medium prose-h1:mb-10 prose-h1:text-primary-accent prose-h1:text-center
+                prose-h2:text-2xl prose-h2:font-semibold prose-h2:text-text-main prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-4 prose-h2:border-b prose-h2:border-border-main/30
+                prose-h3:text-lg prose-h3:font-bold prose-h3:text-text-muted prose-h3:mt-8
+                prose-p:text-text-main/80 prose-p:leading-loose prose-p:text-base prose-p:mb-6
+                prose-ul:my-6 prose-li:my-2 prose-li:text-text-main/80
+                prose-strong:text-primary-accent prose-strong:font-bold
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-accent prose-blockquote:bg-primary-accent/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-xl
               ">
                                 <ReactMarkdown>{reportMarkdown}</ReactMarkdown>
                             </div>
