@@ -5,13 +5,13 @@ STYLE:
 - Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.
 
 COMPOSITION:
-- Top center: 'EAST-FACING INDEPENDENT HOUSE' and '30ft x 40ft PLOT'.
+- Top center: 'EAST-FACING VILLA' and '30ft x 40ft PLOT'.
 - Ground Floor laid out left, First Floor alongside it.
 - Bottom Left: LEGEND (Walls/Doors/Windows).
 
 PROJECT SPECIFICS:
 - Plot Dimensions: 30.0ft x 40.0ft plot. (You MUST annotate outer plot dimensions 30.0ft and 40.0ft with arrows!).
-- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Parking.
+- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, Parking.
 - Ground floor bedroom preference: YES. Place exactly 1 bedroom(s) on Ground Floor.
 
 LAYOUT & PLACEMENT RULES (CRITICAL):
@@ -31,25 +31,26 @@ DETAILING & SETBACKS (CRITICAL):
 - PLOT LABELS: Overall 30.0ft x 40.0ft dimensions must be drawn with arrowheads on the outer compound wall.
 
 VASTU/KPBR RULES AND ROOM MAPPINGS:
-1) ROOM_PLACEMENTS
 *Ground Floor Plan*
-*Main Entrance*: Center-Right (East). Opens into Living Room. *Reasoning: Located in the East for positive energy flow.*
-*Parking*: Front (East). *Reasoning: Explicitly placed in East direction.*
-*Living Room*: Top-Right (Northeast/East). *Reasoning: Forefront, not West/South side of front.*
-*Pooja Room*: Top-Right corner (Northeast). *Reasoning: Positive zone for deities.*
-*Kitchen*: Bottom-Right (Southeast). Adjacent to Dining Area. *Reasoning: Auspicious for fire element.*
-*Dining Area*: Center-South (South). Adjacent to Kitchen. *Reasoning: Best found Northwest of kitchen.*
-*Bedroom 1*: Bottom-Left (Southwest). *Reasoning: Stable zone for a bedroom.*
-*Bathroom 1*: Top-Left (Northwest). Common. *Reasoning: Suitable for waste disposal.*
-*Stairs*: Center-Left (West). Rising to First Floor.
+
+*Main Entrance*: Top-Right (East). Opens into Living Room. *Reasoning: Positive energy flow.*
+*Parking*: Bottom-Right (East).
+*Stairs*: Center-Left (West).
+*Living Room*: Center (East/North). *Reasoning: Forefront of the house.*
+*Kitchen*: Bottom-Right (Southeast). Adjacent to Dining Area. *Reasoning: Southeast corner.*
+*Dining Area*: Bottom-Center (South/Southeast). Adjacent to Kitchen. *Reasoning: Near kitchen.*
+*Pooja Room*: Top-Left (Northeast).
+*Study Room*: Top-Center (North).
+*Bedroom 1*: Bottom-Left (Southwest). Master Bedroom. *Reasoning: Southwest is master's.*
+*Bathroom 1*: Bottom-Left (West). Attached to Bedroom 1. *Reasoning: West or Northwest.*
+*Bathroom 2*: Bottom-Center (South).
 
 *First Floor Plan*
-*Stairs Landing*: Center-Left (West).
-*Bedroom 2 (Master)*: Bottom-Left (Southwest). *Reasoning: Master bedroom on second level, Southwest.*
-*Bathroom 2*: Attached to Bedroom 2, Left (West).
-*Bedroom 3*: Top-Left (Northwest). *Reasoning: For male family members, West/Northwest.*
-*Bathroom 3*: Attached to Bedroom 3, Top (North).
-*Balcony*: Right (East). *Reasoning: Veranda concept affixed to entrance side.*
+
+*Balcony*: Top-Right (East).
+*Bedroom 2*: Bottom-Left (West). Male member. *Reasoning: West or Northwest.*
+*Bathroom 3*: Bottom-Left (Northwest). Attached to Bedroom 2. *Reasoning: West or Northwest.*
+*Bedroom 3*: Bottom-Right (South). Female member. *Reasoning: South or Southeast.*
 
 DO NOT INCLUDE (FATAL ERRORS):
 - NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).

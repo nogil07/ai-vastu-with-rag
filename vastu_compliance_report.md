@@ -1,24 +1,24 @@
 ## 1 Project Overview
 
-- **Plot Dimensions:** NA m x NA m
-- **Plot Facing Direction:** NA
-- **Plot Shape:** NA
-- **Number of Floors:** NA
-- **Built-up Area:** Approx. NA sqft
-- **Building Type:** NA
+- **Plot Dimensions:** 30 m x 40 m
+- **Plot Facing Direction:** East
+- **Plot Shape:** Rectangle
+- **Number of Floors:** G+1
+- **Built-up Area:** Approx. 1200 sqft
+- **Building Type:** Villa
 - **Date of Report Generation:** March 09, 2026
 
 ## 2 Generated Floor Plan Summary
 
 The generated plan reflects the requested residential program with practical circulation, Vastu-oriented zoning, and KPBR-aware perimeter treatment.
 
-- **Bedrooms:** NA
-- **Bathrooms:** NA
-- **Kitchen:** NA
-- **Living Room:** NA
-- **Dining Area:** NA
-- **Pooja Room:** NA
-- **Ground Floor Bedroom Preference:** NA (0)
+- **Bedrooms:** 3
+- **Bathrooms:** 3
+- **Kitchen:** Yes
+- **Living Room:** Yes
+- **Dining Area:** Yes
+- **Pooja Room:** Yes
+- **Ground Floor Bedroom Preference:** No (0)
 
 ## 3 Vastu Compliance Analysis
 
@@ -41,11 +41,9 @@ The concept indicates KPBR intent; final statutory compliance must be validated 
 - Setbacks must be shown in **metres (m)** with clear arrows and labels in the drawing.
 - Ventilation/light and practical circulation should be verified at permit stage.
 
-| Compliance Item | Status | Note |
-|---|---|---|
-| Setback annotation in metres | Compliant (Prompt Intent) | Final municipal check required |
-| Room labels and dimensions | Compliant (Prompt Intent) | Verify final dimensions |
-| Practical circulation and access | Good | Final architect review required |
+- **Setback annotation in metres**: Compliant (Prompt Intent) - Final municipal check required
+- **Room labels and dimensions**: Compliant (Prompt Intent) - Verify final dimensions
+- **Practical circulation and access**: Good - Final architect review required
 
 ## 5 Vastu Score / Compliance Score
 

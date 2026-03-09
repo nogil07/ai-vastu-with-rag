@@ -73,11 +73,9 @@ The concept indicates KPBR intent; final statutory compliance must be validated 
 - Setbacks must be shown in **metres (m)** with clear arrows and labels in the drawing.
 - Ventilation/light and practical circulation should be verified at permit stage.
 
-| Compliance Item | Status | Note |
-|---|---|---|
-| Setback annotation in metres | Compliant (Prompt Intent) | Final municipal check required |
-| Room labels and dimensions | Compliant (Prompt Intent) | Verify final dimensions |
-| Practical circulation and access | Good | Final architect review required |
+- **Setback annotation in metres**: Compliant (Prompt Intent) - Final municipal check required
+- **Room labels and dimensions**: Compliant (Prompt Intent) - Verify final dimensions
+- **Practical circulation and access**: Good - Final architect review required
 
 ## 5 Vastu Score / Compliance Score
 
@@ -164,7 +162,7 @@ Mandatory content and style rules:
 - Write in detailed consultant tone like an architectural audit document.
 - Use dense but readable bullets and short explanatory paragraphs.
 - Section 3 must evaluate multiple spaces with verdict tags: **Excellent**, **Good**, **Mixed**, or **Compliant**.
-- Section 4 must include: explicit setback discussion in metres + one compact markdown table.
+- Section 4 must include: explicit setback discussion in metres. Use detailed bullet points instead of an HTML or markdown table.
 - If statutory values are uncertain, mark as **Validation Required**.
 - Section 5 must include score breakdown and final total score out of 100.
 - Section 6 must be numbered issues with technical impact.

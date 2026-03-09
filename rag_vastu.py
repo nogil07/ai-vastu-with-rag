@@ -102,7 +102,7 @@ def setup_rag(pdf_paths=None):
     if api_key:
         print("Gemini API Key found. Setting up LLM capabilities.")
         # Switched to gemini-2.5-flash as the lite version often hits strict free tier RPD faster
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", google_api_key=api_key)
         
         # 1. Multi-Query Retrieval Setup
         # This makes the LLM generate variations of the user's question to pull in more comprehensive context
