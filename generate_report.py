@@ -53,40 +53,207 @@ def generate_vastu_report() -> bool:
         )
 
         template = """
-You are a master architectural consultant and Vastu Shastra expert preparing an exhaustive, premium Vastu and KPBR audit report. 
-Your goal is to provide a highly detailed, professional, and profound analysis that exceeds standard expectations. DONT JUST LIST ITEMS, PROVIDE DEEP INSIGHTS.
+You are a senior architectural consultant and Vastu compliance auditor preparing a professional technical report.
 
-Use these exact sections and style:
-## 1 ❐ Project Overview
-## 2 ❐ Generated Floor Plan Summary
-## 3 ❐ Vastu Compliance Analysis
-## 4 ❐ KPBR / Building Rule Compliance
-## 5 ❐ Vastu Score / Compliance Score
-## 6 ❐ Detected Issues / Violations
-## 7 ❐ Recommendations
-## 8 ❐ Final Compliance Status
+Your task is to analyze a generated floor plan and produce a structured **Vastu + KPBR Compliance Report**.
+
+The report must be professional, structured, concise but insightful, similar to a real architectural audit document.
+
+Use the exact report structure below.
+
+------------------------------------------------------------
+
+# AI Vastu Compliance Report
+Generated on: {current_date}
+
+---
+
+## 1. Project Overview
+Provide a concise summary of the project using the user requirements.
+
+Include:
+
+• Plot Size  
+• Plot Shape  
+• Facing Direction  
+• Floors  
+• Total Built-up Area  
+• Building Type  
+• Requested Rooms  
+
+Explain briefly the architectural objective of the layout.
+
+---
+
+## 2. Generated Floor Plan Summary
+Describe the overall spatial organization.
+
+Include:
+
+• Entrance placement  
+• Public zone layout (living / dining)  
+• Service zone layout (kitchen / utilities)  
+• Private zone layout (bedrooms)  
+• Vertical circulation (stairs)  
+• Movement flow through the house  
+
+Explain how the spatial layout supports functionality and usability.
+
+---
+
+## 3. Vastu Compliance Analysis
+
+Evaluate the placement of key rooms.
+
+Use this evaluation structure:
+
+Room  
+Recommended Direction  
+Actual Placement  
+Verdict (Excellent / Good / Mixed / Non-Compliant)  
+Explanation
+
+Rooms to evaluate:
+
+• Main Entrance  
+• Living Room  
+• Kitchen  
+• Master Bedroom  
+• Secondary Bedrooms  
+• Bathrooms  
+• Pooja Room  
+• Staircase  
+
+Explain briefly how each placement affects energy flow, ventilation, daylight, and spatial harmony.
+
+---
+
+## 4. KPBR / Building Regulation Compliance
+
+Evaluate the layout against Kerala building rules.
+
+Discuss:
+
+• Front setback  
+• Rear setback  
+• Side setbacks  
+• Minimum room sizes  
+• Ventilation provisions  
+• Circulation spaces  
+• Parking provisions  
+
+If exact compliance cannot be confirmed, mark as **Validation Required**.
+
+Use bullet points for clarity.
+
+---
+
+## 5. Vastu Compliance Score
+
+Provide a structured score breakdown.
+
+Criteria:
+
+Entrance Orientation  
+Room Placement  
+Bedroom Alignment  
+Kitchen Placement  
+Toilet Placement  
+Ventilation and Natural Light  
+Circulation Efficiency  
+Plot Orientation
+
+Each criterion should be scored.
+
+Example:
+
+Entrance Orientation – 18 / 20  
+Room Placement – 20 / 25  
+Bedroom Alignment – 12 / 15  
+Kitchen Placement – 9 / 10  
+Toilet Placement – 7 / 10  
+Ventilation – 8 / 10  
+Circulation – 7 / 10  
+Plot Orientation – 6 / 10  
+
+Final Score: **XX / 100**
+
+Rating scale:
+
+90–100 → Excellent  
+75–89 → Good  
+60–74 → Moderate  
+Below 60 → Needs Improvement
+
+---
+
+## 6. Detected Issues or Violations
+
+List any problems in the design.
+
+For each issue include:
+
+• Issue description  
+• Technical impact  
+• Vastu implication  
+• Severity (Minor / Moderate / Major)
+
+---
+
+## 7. Design Improvement Recommendations
+
+Provide practical suggestions to improve the layout.
+
+Examples:
+
+• Relocate a room  
+• Adjust circulation  
+• Improve ventilation  
+• Adjust room proportions  
+• Improve orientation  
+
+Recommendations must be actionable.
+
+---
+
+## 8. Final Compliance Verdict
+
+Provide a short professional conclusion summarizing:
+
+• Overall Vastu compliance  
+• KPBR compliance status  
+• Suitability for construction planning  
+
+End with a clear final status:
+
+**COMPLIANT**  
+**MINOR CHANGES REQUIRED**  
+**REQUIRES MAJOR CORRECTIONS**
+
+------------------------------------------------------------
 
 Inputs:
-- Requirements JSON: {requirements_json}
-- Prompt text (contains explicit Vastu reasoning for layout): {prompt_text}
-- Retrieved constraints (KPBR rules): {constraints_text}
 
-Mandatory content and style rules:
-- Tone: Highly authoritative, sophisticated, and deeply technical architectural consultant.
-- Detail level: EXTREME. Write extensive, multi-sentence paragraphs for every point. Explain *why* a placement works, its impact on the home's energy (prana), natural light, ventilation, and circulation.
-- Section 2: Detail the spatial flow. How does one move from the entrance to the private zones? Discuss the volume, connectivity, and functional ergonomics.
-- Section 3: Evaluate EVERY single room mentioned in the Prompt Text. Provide profound Vastu insights referencing specific elements (Agni, Jal, Vayu, Prithvi, Akash) and directions (Eesanya, Agneya, Nairutya, Vayavya). Use verdict tags: **Excellent**, **Good**, **Mixed**, or **Non-Compliant**.
-- Section 4: Explicit setback discussion in metres. Detail the implications of the structural footprint on the plot. Use comprehensive bullet points (NO TABLES). If statutory values are uncertain, mark as **Validation Required** but provide the estimated requirement.
-- Section 5: Include a detailed score breakdown for at least 8 specific criteria, culminating in a final total score out of 100 with a descriptive rating (e.g., "Outstanding", "Needs Improvement").
-- Section 6: Detail any compromises heavily. Explain the technical and energetic impact of each issue.
-- Section 7: Provide highly actionable, precise recommendations for fixing issues or further elevating the spatial energy.
-- Section 8: A powerful, commanding concluding paragraph followed by a bold concise status line (e.g., **MINOR CHANGES NEEDED**).
-- Premium Delineation: Wrap key architectural insights or Vastu rationale in markdown blockquotes (`>`) to make them stand out. Use horizontal rules (`---`) between major sections to enhance visual clarity.
-- Format: Use rich markdown formatting (bolding, italics, nested lists) to make the dense information highly readable and engaging.
+User Requirements:
+{requirements_json}
+
+Generated Floor Plan Prompt:
+{prompt_text}
+
+Retrieved Vastu and KPBR Rules:
+{constraints_text}
+
+Important rules:
+
+• Maintain professional architectural tone  
+• Avoid excessive storytelling  
+• Use clear structure and bullet lists  
+• Avoid speculation if rules are unclear  
+• Ensure the report reads like a professional architectural audit
 """
 
         chain = PromptTemplate(
-            input_variables=["requirements_json", "prompt_text", "constraints_text"],
+            input_variables=["requirements_json", "prompt_text", "constraints_text", "current_date"],
             template=template,
         ) | llm
 
@@ -96,6 +263,7 @@ Mandatory content and style rules:
                 "requirements_json": json.dumps(reqs, indent=2),
                 "prompt_text": prompt_text,
                 "constraints_text": constraints_text,
+                "current_date": datetime.now().strftime("%Y-%m-%d"),
             }
         )
 

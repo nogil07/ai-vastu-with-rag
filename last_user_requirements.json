@@ -1,6 +1,6 @@
 {
-  "plotLength": "50",
-  "plotWidth": "40",
+  "plotLength": "40",
+  "plotWidth": "30",
   "plotShape": "Rectangle",
   "plotFacing": "East",
   "floors": "G+1",
