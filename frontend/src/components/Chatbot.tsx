@@ -57,7 +57,7 @@ export const Chatbot = ({ isDark }: { isDark: boolean }) => {
     setIsTyping(true);
 
     try {
-      const res = await fetch('http://localhost:8080/api/chat', {
+      const res = await fetch('https://ai-vastu-with-rag.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: input }),

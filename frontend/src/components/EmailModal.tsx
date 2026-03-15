@@ -22,7 +22,7 @@ export const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose }) => {
         setErrorMsg('');
 
         try {
-            const response = await fetch('http://localhost:8080/api/email', {
+            const response = await fetch('https://ai-vastu-with-rag.onrender.com/api/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

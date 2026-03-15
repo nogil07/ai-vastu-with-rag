@@ -15,7 +15,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ onBack }) => {
 
     useEffect(() => {
         // Fetch the report
-        fetch('http://localhost:8080/api/result/report')
+        fetch('https://ai-vastu-with-rag.onrender.com/api/result/report')
             .then(res => res.json())
             .then(data => {
                 setReportMarkdown(data.markdown || '');
@@ -29,7 +29,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ onBack }) => {
     }, []);
 
     const handleDownload = () => {
-        window.open('http://localhost:8080/api/result/pdf', '_blank');
+        window.open('https://ai-vastu-with-rag.onrender.com/api/result/pdf', '_blank');
     };
 
     if (loading) {
@@ -105,7 +105,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ onBack }) => {
                         <div className="glass-card rounded-[2.5rem] p-3 sm:p-6 overflow-hidden border border-border-main/50 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] relative group bg-white/40 backdrop-blur-xl">
                             <div className="absolute inset-0 bg-primary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                             <img
-                                src="http://localhost:8080/api/result/image"
+                                src="https://ai-vastu-with-rag.onrender.com/api/result/image"
                                 alt="Generated Vastu Plan"
                                 className="w-full h-auto rounded-[2rem] object-cover shadow-2xl bg-white border border-border-main/20"
                                 onError={(e) => {
