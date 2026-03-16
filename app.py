@@ -12,7 +12,7 @@ from user_input import generate_prompt_from_dict
 from generate_image import main as generate_image_main
 from generate_report import generate_vastu_report
 from generate_pdf import generate_pdf_report
-from rag_chatbot import get_chatbot_response
+# rag_chatbot is imported lazily to prevent ML startup timeout
 
 app = Flask(__name__)
 CORS(app)
@@ -25,6 +25,8 @@ def chat():
         if not query:
             return jsonify({"status": "error", "detail": "Empty query"}), 400
         
+        # Lazy import to avoid blocking gunicorn startup
+        from rag_chatbot import get_chatbot_response
         response = get_chatbot_response(query)
         return jsonify({"status": "success", "response": response})
     except Exception as e:

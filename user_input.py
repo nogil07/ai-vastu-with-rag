@@ -1,7 +1,6 @@
 import os
 import re
-from rag_vastu import setup_rag
-
+# rag_vastu imported lazily
 
 def get_user_input():
     print("============================================================")
@@ -138,10 +137,11 @@ def generate_prompt_from_dict(reqs: dict) -> str:
     Uses RAG for Vastu/KPBR constraints and then composes a deterministic CAD-focused
     prompt to improve 2D floor plan image consistency.
     """
-    print("\n==================================================")
+    print("==================================================")
     print("Generating Optimized Prompt using Vastu RAG Agent...")
     print("==================================================")
 
+    from rag_vastu import setup_rag
     qa_chain, _ = setup_rag(["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"])
 
     if not qa_chain:

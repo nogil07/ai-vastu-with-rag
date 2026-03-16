@@ -1,23 +1,13 @@
 import os
 import sys
 from dotenv import load_dotenv
-# from langchain_community.document_loaders import PyPDFLoader
-from langchain_classic.chains import create_retrieval_chain
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_classic.retrievers.multi_query import MultiQueryRetriever
 import logging
 load_dotenv()
 
-import fitz
-from rapidocr_onnxruntime import RapidOCR
-from langchain_core.documents import Document
-
 def load_pdf_with_ocr(pdf_path):
+    import fitz
+    from rapidocr_onnxruntime import RapidOCR
+    from langchain_core.documents import Document
     print(f"Loading {pdf_path} with OCR...")
     ocr = RapidOCR()
     doc = fitz.open(pdf_path)
@@ -46,6 +36,15 @@ def load_pdf_with_ocr(pdf_path):
     return documents
 
 def setup_rag(pdf_paths=None):
+    from langchain_huggingface import HuggingFaceEmbeddings
+    from langchain_community.vectorstores import Chroma
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_classic.retrievers.multi_query import MultiQueryRetriever
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_classic.chains.combine_documents import create_stuff_documents_chain
+    from langchain_classic.chains import create_retrieval_chain
+
     if pdf_paths is None:
         pdf_paths = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
         
