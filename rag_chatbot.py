@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_huggingface import HuggingFaceEmbeddings
+# HuggingFaceEmbeddings removed
 from langchain_community.vectorstores import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.runnables import RunnablePassthrough
@@ -15,7 +15,8 @@ PDF_PATHS = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
 
 def setup_chatbot_rag():
     """Initializes a dedicated RAG system for the chatbot."""
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    from langchain_google_genai import GoogleGenerativeAIEmbeddings
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=os.getenv("GEMINI_API_KEY"))
     
     # Check if DB exists, otherwise it will be empty initially (requires ingestion)
     if not os.path.exists(PERSIST_DIRECTORY) or not os.listdir(PERSIST_DIRECTORY):

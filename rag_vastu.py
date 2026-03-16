@@ -45,6 +45,8 @@ def setup_rag(pdf_paths=None):
     from langchain_classic.chains.combine_documents import create_stuff_documents_chain
     from langchain_classic.chains import create_retrieval_chain
 
+    from langchain_google_genai import GoogleGenerativeAIEmbeddings
+    
     if pdf_paths is None:
         pdf_paths = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
         
@@ -53,9 +55,9 @@ def setup_rag(pdf_paths=None):
             print(f"Error: {pdf_path} not found.")
             return None, None
 
-    print("Initializing Embeddings (may take a moment to download model)...")
-    # Using a small, efficient model for local embeddings
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    print("Initializing Google Generative AI Embeddings to save local memory...")
+    # Using Google's embedding model instead of downloading a Heavy HuggingFace model
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=os.getenv("GEMINI_API_KEY"))
 
     print("Creating/Loading Vector Store...")
     # Persist directory for the database
