@@ -1,0 +1,189 @@
+Yes — this code **is using a knowledge base**, specifically a **RAG (Retrieval-Augmented Generation)** knowledge base built with **Chroma vector DB + PDF documents**.
+
+Here’s why:
+
+---
+
+# Where the Knowledge Base Exists
+
+The knowledge base is created from these PDFs:
+
+```python
+PDF_PATHS = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
+```
+
+These documents are:
+
+1. Loaded
+2. Split into chunks
+3. Converted into embeddings
+4. Stored in Chroma vector database
+
+---
+
+# The Knowledge Base Pipeline
+
+## 1. Load PDFs
+
+```python
+docs = load_pdf_with_ocr(pdf_path)
+```
+
+This extracts text from PDFs using OCR.
+
+---
+
+## 2. Split Documents
+
+```python
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+texts = text_splitter.split_documents(all_documents)
+```
+
+Large documents are broken into chunks.
+
+---
+
+## 3. Convert to Embeddings
+
+```python
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+```
+
+This transforms text into vectors.
+
+---
+
+## 4. Store in Chroma DB
+
+```python
+vectordb = Chroma.from_documents(
+    documents=texts,
+    embedding=embeddings,
+    persist_directory=PERSIST_DIRECTORY
+)
+```
+
+This is the actual vector knowledge base.
+
+Stored at:
+
+```python
+PERSIST_DIRECTORY = "db_chatbot"
+```
+
+---
+
+# Retrieval Step (Most Important)
+
+This is the core RAG behavior:
+
+```python
+retriever = vectordb.as_retriever(search_kwargs={"k": 7})
+```
+
+And later:
+
+```python
+{"context": retriever | format_docs, "question": RunnablePassthrough()}
+```
+
+This means:
+
+1. User asks a question
+2. Retriever searches the vector DB
+3. Relevant chunks are fetched
+4. Retrieved context is inserted into prompt
+5. Gemini answers using that context
+
+---
+
+# So Is It Using ONLY Knowledge Base?
+
+No.
+
+It is using:
+
+## 1. Knowledge Base (RAG)
+
+From:
+
+* KPBR PDF
+* Vastu PDF
+
+## 2. General LLM Knowledge
+
+From:
+
+* Gemini model
+
+Because your system prompt explicitly says:
+
+```python
+"Use your deep general architectural knowledge"
+```
+
+So the model can answer:
+
+* from retrieved PDFs
+* from its pretrained knowledge
+
+---
+
+# Important Detail
+
+This line proves it is hybrid:
+
+```python
+"Use your deep general architectural knowledge ..."
+```
+
+If you wanted a **strict KB-only bot**, you would instead say:
+
+```python
+Answer ONLY from the provided context.
+If answer is not in context, say you don't know.
+```
+
+---
+
+# Current Architecture
+
+Your chatbot is:
+
+```text
+User Query
+   ↓
+Retriever searches Chroma DB
+   ↓
+Relevant PDF chunks returned
+   ↓
+Prompt + Context sent to Gemini
+   ↓
+Gemini combines:
+   - Retrieved KB data
+   - Its own knowledge
+   ↓
+Final Answer
+```
+
+---
+
+# Final Verdict
+
+✅ YES — it uses a knowledge base (RAG with Chroma)
+
+✅ YES — it retrieves from PDFs
+
+✅ YES — it stores embeddings persistently
+
+❌ NO — it is not KB-only
+
+✅ It is a hybrid:
+
+* Retrieval + LLM knowledge

@@ -1,6 +1,7 @@
 import os
 import re
-# rag_vastu imported lazily
+from rag_vastu import setup_rag
+
 
 def get_user_input():
     print("============================================================")
@@ -61,6 +62,36 @@ def _safe_num(v: str, fallback: float) -> float:
 def _yn(v: str) -> bool:
     return str(v).strip().lower() in {"yes", "y", "true", "1"}
 
+def detect_total_floors(floor_text: str) -> int:
+    floor_text = str(floor_text).strip().lower()
+
+    if floor_text in {"ground", "g", "single", "1"}:
+        return 1
+
+    match = re.search(r"g\s*\+\s*(\d+)", floor_text)
+
+    if match:
+        return int(match.group(1)) + 1
+
+    if "duplex" in floor_text:
+        return 2
+
+    if "triplex" in floor_text:
+        return 3
+
+    return 2
+
+def get_floor_names(total_floors):
+    names = [
+        "GROUND FLOOR",
+        "FIRST FLOOR",
+        "SECOND FLOOR",
+        "THIRD FLOOR",
+        "FOURTH FLOOR"
+    ]
+
+    return names[:total_floors]
+
 
 def _build_cad_prompt(reqs: dict, rule_block: str) -> str:
     plot_w = _safe_num(reqs.get("plotWidth", "30"), 30.0)
@@ -97,14 +128,37 @@ def _build_cad_prompt(reqs: dict, rule_block: str) -> str:
         else "- Ground floor bedroom preference: NO specific count required.\n"
     )
 
+    total_floors = detect_total_floors(floors)
+    floor_names = get_floor_names(total_floors)
+    floor_layout_instruction = ""
+
+    for floor in floor_names:
+        floor_layout_instruction += f"- {floor} clearly separated and labeled.\n"
+    composition_text = (
+        "- Multi-floor plans arranged side-by-side horizontally.\n"
+        if total_floors > 1
+        else "- Single floor plan centered.\n"
+    )
+
+
     return (
-        "Create an ultra realistic and highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).\n\n"
+        "Create an ultra realistic 4k(cartoon styled) modern 2D CAD floor plan sheet.\n\n"
+        "TOP VIEW ONLY.\n"
+        "NO 3D.\n"
+        "NO ISOMETRIC VIEW.\n\n"
         "STYLE:\n"
         "- Pure white background outside plot, white inner floors with colored, realistic modern furniture.\n"
         "- Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.\n\n"
+
+
+
+        "FLOOR DISPLAY:\n"
+        f"{floor_layout_instruction}\n"
+
         "COMPOSITION:\n"
         f"- Top center: '{facing.upper()}-FACING {building_type.upper()}' and '{int(plot_w)}ft x {int(plot_l)}ft PLOT'.\n"
-        "- Ground Floor laid out left, First Floor alongside it.\n"
+        f"{composition_text}"
+        "- Bottom Left: LEGEND (Walls/Doors/Windows).\n\n"
         "- Bottom Left: LEGEND (Walls/Doors/Windows).\n\n"
         "PROJECT SPECIFICS:\n"
         f"- Plot Dimensions: {plot_w}ft x {plot_l}ft plot. (You MUST annotate outer plot dimensions {plot_w}ft and {plot_l}ft with arrows!).\n"
@@ -127,22 +181,29 @@ def _build_cad_prompt(reqs: dict, rule_block: str) -> str:
         "VASTU/KPBR RULES AND ROOM MAPPINGS:\n"
         f"{rule_block}\n\n"
         "DO NOT INCLUDE (FATAL ERRORS):\n"
-        "- NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).\n"
+        
         "- NO blurry text. No unlabelled rooms.\n"
     )
 
+
+_QA_CHAIN = None
+
+def get_qa_chain():
+    global _QA_CHAIN
+    if _QA_CHAIN is None:
+        _QA_CHAIN, _ = setup_rag(["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"])
+    return _QA_CHAIN
 
 def generate_prompt_from_dict(reqs: dict) -> str:
     """
     Uses RAG for Vastu/KPBR constraints and then composes a deterministic CAD-focused
     prompt to improve 2D floor plan image consistency.
     """
-    print("==================================================")
+    print("\n==================================================")
     print("Generating Optimized Prompt using Vastu RAG Agent...")
     print("==================================================")
 
-    from rag_vastu import setup_rag
-    qa_chain, _ = setup_rag(["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"])
+    qa_chain = get_qa_chain()
 
     if not qa_chain:
         print("Failed to initialize Vastu RAG context.")
@@ -179,27 +240,54 @@ def generate_prompt_from_dict(reqs: dict) -> str:
     if floors.lower() not in {"ground", "g", "1", "single"}:
         feature_list.append("Balcony (First Floor)")
 
-    rag_query = (
-        "You are an Expert Architectural Planner and Vastu Master. Based on the project details, you must assign an explicit visual layout location "
-        "and compass direction (e.g., Top-Right (Northeast), Bottom-Left (Southwest), Center) to EVERY single room requested, according to strict Vastu principles.\n\n"
-        "Return ONLY the following section. Do not output ANY other abstract rules or hints:\n"
-        "1) ROOM_PLACEMENTS (CRITICAL: You MUST break this down explicitly into '*Ground Floor Plan*' and '*First Floor Plan*' (if G+1 or more). "
-        "For EACH floor, list EVERY room, its exact visual location (Top/Bottom/Left/Right/Center) AND direction, and provide *Deep Architectural & Vastu Reasoning*. "
-        "The reasoning MUST be highly detailed (2-3 sentences per room), explaining the energetic benefits, airflow, sunlight, and exact Vastu Shastra principles applied. "
-        f"Example format: '*Main Entrance*: Center-Right (East). Opens into Living Room. *Reasoning: Placing the entrance in the Eastern Pada invokes positive solar energy (Indra) and ensures the morning sunlight penetrates deep into the living spaces, promoting health and vitality. This aligns perfectly with the {facing}-facing plot dynamics.'\n"
-        "The Main Entrance MUST explicitly state it opens directly into the Living Room (or Lobby). "
-        "The Parking MUST be placed in the {facing} direction (front of the house). "
-        "The Kitchen MUST be placed adjacent to the Dining Area. "
-        "If a Pooja Room is included in the requirements, it MUST be placed on the Ground Floor plan for accessibility and grounding. "
-        "CRITICAL: Every single room placement (not just Pooja) MUST have a detailed, logical architectural and Vastu-based reasoning that dictates its specific location. "
-        "Ensure every requested room, bathroom, entrance, and stair is placed.)\n\n"
-        f"Project details: {plot_w} ft x {plot_l} ft, {facing}-facing plot, {floors}, "
-        f"{bedrooms} bedrooms ({gf_bedrooms} on GF MUST BE INCLUDED), {bathrooms} bathrooms, building type: {building_type}.\n"
-        f"MUST ASSIGN LOCATIONS FOR: Main Entrance, Stairs, {', '.join(feature_list) if feature_list else 'Standard rooms'}, {bedrooms} Bedrooms, {bathrooms} Bathrooms.\n"
-        f"Layout preferences: {layout_pref}, architectural style: {style}, "
-        f"vastu compliance preference: {vastu_level}. "
-        "Keep response comprehensive but strictly focused on the requested formats."
-    )
+    rag_query = f"""
+    Generate a compact architectural room placement mapping
+    optimized for GPT-image-2 CAD floor plan rendering.
+
+    IMPORTANT:
+    - Keep output concise
+    - No long explanations
+    - No paragraphs
+    - No markdown tables
+    - No repeated rules
+
+    FORMAT:
+
+    GROUND FLOOR:
+    - Room -> Position
+
+    FIRST FLOOR:
+    - Room -> Position
+
+    SECOND FLOOR:
+    - Room -> Position
+
+    RULES:
+    - Use visual positions:
+    front-left
+    front-right
+    rear-left
+    rear-right
+    center-left
+    center-right
+    center
+
+    - Kitchen adjacent to Dining
+    - Parking in front facing side
+    - Internal stairs only
+    - Follow Vastu principles
+    - Keep layout architecturally balanced
+
+    PROJECT:
+    - Plot: {plot_w}ft x {plot_l}ft
+    - Facing: {facing}
+    - Floors: {floors}
+    - Bedrooms: {bedrooms}
+    - Bathrooms: {bathrooms}
+    - Building type: {building_type}
+    - Features: {', '.join(feature_list)}
+    - Layout preferences: {layout_pref}
+    """
 
     try:
         rag_result = qa_chain.invoke({"input": rag_query})

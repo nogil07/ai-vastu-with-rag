@@ -1,13 +1,23 @@
 import os
 import sys
 from dotenv import load_dotenv
+# from langchain_community.document_loaders import PyPDFLoader
+from langchain_classic.chains import create_retrieval_chain
+from langchain_classic.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_classic.retrievers.multi_query import MultiQueryRetriever
 import logging
 load_dotenv()
 
+import fitz
+from rapidocr_onnxruntime import RapidOCR
+from langchain_core.documents import Document
+
 def load_pdf_with_ocr(pdf_path):
-    import fitz
-    from rapidocr_onnxruntime import RapidOCR
-    from langchain_core.documents import Document
     print(f"Loading {pdf_path} with OCR...")
     ocr = RapidOCR()
     doc = fitz.open(pdf_path)
@@ -36,17 +46,6 @@ def load_pdf_with_ocr(pdf_path):
     return documents
 
 def setup_rag(pdf_paths=None):
-    from langchain_huggingface import HuggingFaceEmbeddings
-    from langchain_community.vectorstores import Chroma
-    from langchain_text_splitters import RecursiveCharacterTextSplitter
-    from langchain_google_genai import ChatGoogleGenerativeAI
-    from langchain_classic.retrievers.multi_query import MultiQueryRetriever
-    from langchain_core.prompts import ChatPromptTemplate
-    from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-    from langchain_classic.chains import create_retrieval_chain
-
-    from langchain_google_genai import GoogleGenerativeAIEmbeddings
-    
     if pdf_paths is None:
         pdf_paths = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
         
@@ -55,9 +54,9 @@ def setup_rag(pdf_paths=None):
             print(f"Error: {pdf_path} not found.")
             return None, None
 
-    print("Initializing Google Generative AI Embeddings to save local memory...")
-    # Using Google's embedding model instead of downloading a Heavy HuggingFace model
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=os.getenv("GEMINI_API_KEY"))
+    print("Initializing Embeddings (may take a moment to download model)...")
+    # Using a small, efficient model for local embeddings
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     print("Creating/Loading Vector Store...")
     # Persist directory for the database
@@ -103,7 +102,7 @@ def setup_rag(pdf_paths=None):
     if api_key:
         print("Gemini API Key found. Setting up LLM capabilities.")
         # Switched to gemini-2.5-flash as the lite version often hits strict free tier RPD faster
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", google_api_key=api_key)
+        llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", google_api_key=api_key)
         
         # 1. Multi-Query Retrieval Setup
         # This makes the LLM generate variations of the user's question to pull in more comprehensive context

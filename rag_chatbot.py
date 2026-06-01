@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
-# HuggingFaceEmbeddings removed
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.runnables import RunnablePassthrough
@@ -14,9 +14,8 @@ PERSIST_DIRECTORY = "db_chatbot"
 PDF_PATHS = ["vastu-for-home.pdf", "LSGD-KPBR-Amendment.pdf"]
 
 def setup_chatbot_rag():
-    """Initializes a dedicated RAG system for the chatbot."""
-    from langchain_google_genai import GoogleGenerativeAIEmbeddings
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=os.getenv("GEMINI_API_KEY"))
+    """Initializes a dedicated RAG system for the chatbot using its own PDF loader."""
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     
     # Check if DB exists, otherwise it will be empty initially (requires ingestion)
     if not os.path.exists(PERSIST_DIRECTORY) or not os.listdir(PERSIST_DIRECTORY):
@@ -27,9 +26,15 @@ def setup_chatbot_rag():
         all_documents = []
         for pdf_path in PDF_PATHS:
             if os.path.exists(pdf_path):
-                docs = load_pdf_with_ocr(pdf_path)
-                if docs:
-                    all_documents.extend(docs)
+                print(f"Loading {pdf_path} for chatbot using OCR...")
+                try:
+                    docs = load_pdf_with_ocr(pdf_path)
+                    if docs:
+                        all_documents.extend(docs)
+                except Exception as e:
+                    print(f"Error loading {pdf_path}: {e}")
+            else:
+                print(f"Warning: {pdf_path} not found.")
         
         if all_documents:
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
@@ -50,16 +55,17 @@ def setup_chatbot_rag():
         print("Error: GEMINI_API_KEY not found.")
         return None
 
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", google_api_key=api_key)
-    retriever = vectordb.as_retriever(search_kwargs={"k": 5})
+    llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", google_api_key=api_key)
+    retriever = vectordb.as_retriever(search_kwargs={"k": 7})
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", 
-         "You are Vasuttan AI, a friendly and expert architectural assistant. "
-         "You specialize in Vastu Shastra, modern home design, and regulation-compliant layouts (KPBR). "
-         "Use the following pieces of retrieved context to answer the user's question. "
-         "If you don't know the answer based on the context, say that you don't know, but try to be helpful. "
-         "Keep your responses professional, concise, and focused on architectural advice.\n\n"
+         "You are Vasuttan AI, a friendly, profound, and expert architectural assistant. "
+         "You specialize in Kerala Panchayat Building Rules (KPBR) and Vastu Shastra. "
+         "Answer the user's questions definitively. Answer ONLY from the provided context. If answer is not in context, say you don't know. "
+         "to provide comprehensive advice, but strongly incorporate and quote specific metrics, "
+         "rules, and dimensions from the provided retrieved context where applicable. "
+         "Never say 'my knowledge base does not contain this' for standard conversational.\n\n"
          "Context:\n{context}"),
         ("human", "{question}")
     ])

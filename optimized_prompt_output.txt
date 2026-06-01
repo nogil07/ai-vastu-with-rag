@@ -1,23 +1,33 @@
-Create an ultra realistic and highly attractive, fully rendered modern 2D CAD floor plan sheet (top view only).
+Create an ultra realistic 4k(cartoon styled) modern 2D CAD floor plan sheet.
+
+TOP VIEW ONLY.
+NO 3D.
+NO ISOMETRIC VIEW.
 
 STYLE:
 - Pure white background outside plot, white inner floors with colored, realistic modern furniture.
 - Plot boundary filled with dense, realistic green grass and plants to clearly show setbacks. Car in driveway.
 
+FLOOR DISPLAY:
+- GROUND FLOOR clearly separated and labeled.
+- FIRST FLOOR clearly separated and labeled.
+
 COMPOSITION:
 - Top center: 'EAST-FACING INDEPENDENT HOUSE' and '30ft x 40ft PLOT'.
-- Ground Floor laid out left, First Floor alongside it.
+- Multi-floor plans arranged side-by-side horizontally.
+- Bottom Left: LEGEND (Walls/Doors/Windows).
+
 - Bottom Left: LEGEND (Walls/Doors/Windows).
 
 PROJECT SPECIFICS:
 - Plot Dimensions: 30.0ft x 40.0ft plot. (You MUST annotate outer plot dimensions 30.0ft and 40.0ft with arrows!).
-- Rooms: Kitchen, Living Room, Dining Area, Pooja Room, Study Room, Parking.
+- Rooms: Kitchen, Living Room, Dining Area, Parking.
 - Ground floor bedroom preference: YES. Place exactly 1 bedroom(s) on Ground Floor.
 
 LAYOUT & PLACEMENT RULES (CRITICAL):
 1. ALL ROOMS, ENTRANCES, AND STAIRCASE MUST BE PLACED EXACTLY AS DICTATED IN THE 'ROOM_PLACEMENTS' SECTION BELOW.
 2. Any deviation from the explicit 'ROOM_PLACEMENTS' mapping is a fatal failure.
-3. Strict user layout preferences: OPEN KITCHEN, INTERNAL STAIRS. If 'Internal Stairs' is specified, the stairs MUST be fully enclosed within the main exterior walls of the house, NOT external.
+3. Strict user layout preferences: OPEN KITCHEN, INTERNAL STAIRS, 5 METERS FRONT THE FRONT,KITCHEN IN SOUTH EAST DIRECTION,NEED ONLY THE INPUT ITEMS ,IF THE BATHROOM IN THE SAME FLOOR IN SAME LOCATION DONT PUT THE ROOMS OR BATHROOM OUTLINE THE GROUND FLOOR ,GENERATE A FLOOR PLAN WITH THE GIVEN INPUT,ADD PILLERS IN GROUND FLOOR IF NEEDED ,. If 'Internal Stairs' is specified, the stairs MUST be fully enclosed within the main exterior walls of the house, NOT external.
 4. Parking MUST be placed in the front of the house, oriented towards the East direction (facing the road).
 5. The Kitchen and Dining Area MUST be directly adjacent to each other.
 
@@ -31,50 +41,24 @@ DETAILING & SETBACKS (CRITICAL):
 - PLOT LABELS: Overall 30.0ft x 40.0ft dimensions must be drawn with arrowheads on the outer compound wall.
 
 VASTU/KPBR RULES AND ROOM MAPPINGS:
-*Ground Floor Plan*
+GROUND FLOOR:
+- Main Entrance -> Front-Right
+- Living Room -> Front-Left
+- Kitchen -> Rear-Right
+- Dining Area -> Center-Right
+- Parking -> Front-Center
+- Bedroom (Male/Guest) -> Rear-Left
+- Bathroom -> Center-Left
+- Internal Stairs -> Center-Left
 
-*   **Main Entrance**: Center-Right (East). Opens into Living Room.
-    *   *Reasoning*: As the plot faces East, placing the main entrance in the Eastern pada is paramount for welcoming the beneficial morning sun and positive cosmic energies (Surya, Indra). This location ensures auspiciousness and prosperity, aligning with Vastu principles for a vibrant home.
-*   **Parking**: Front-Left (East).
-    *   *Reasoning*: For an East-facing plot, parking is optimally located in the Eastern section to avoid obstructing the main entrance's energy flow and to receive the morning sun. This placement adheres to Vastu guidelines for vehicular access in an East-facing property.
-*   **Living Room**: Center-Left (East/Northeast).
-    *   *Reasoning*: The Living Room, being a primary reception area, is positioned in the East/Northeast zone to harness the abundant positive energy from the East-facing entrance. This placement allows for ample natural light and a welcoming atmosphere, promoting harmony and positive interactions.
-*   **Pooja Room**: Front-Right (Southeast).
-    *   *Reasoning*: The Southeast is considered an auspicious direction for the Pooja Room, associated with Agni (fire element), promoting purity and divine energy. Grounding the Pooja Room on the ground floor ensures stability and accessibility for daily rituals.
-*   **Kitchen**: Back-Right (Southeast).
-    *   *Reasoning*: The Southeast corner is ideal for the kitchen as it is governed by Agni (fire), ensuring efficient cooking and a harmonious flow of elemental energy. An open kitchen layout in this area promotes ventilation and social interaction while maintaining Vastu compliance.
-*   **Dining Area**: Adjacent to Kitchen (South/Southwest).
-    *   *Reasoning*: The South or Southwest is suitable for the dining area, as it is considered a grounding zone. Placing it adjacent to the kitchen facilitates practical meal service and aligns with Vastu principles for family well-being during meals.
-*   **Bedroom 1 (Master/Adult)**: Back-Left (Southwest).
-    *   *Reasoning*: The Southwest is the most stable and authoritative zone, ideal for the Master Bedroom, promoting peace, stability, and authority for the head of the household. This placement ensures a restful environment and protection.
-*   **Bedroom 2 (Male Family Member)**: Back-Center (West).
-    *   *Reasoning*: The West is recommended for male family members' bedrooms, as it is associated with commanding and authoritative forces, fostering strength and success. This location provides a stable and conducive environment for the male occupant.
-*   **Bathroom 1 (Attached to Bedroom 1)**: Southwest corner of Bedroom 1.
-    *   *Reasoning*: Locating the bathroom within the Master Bedroom in the Southwest corner of the plot maintains the integrity of the Master Bedroom's primary Vastu zone. This ensures minimal disruption to the overall energy flow of the room.
-*   **Bathroom 2 (Common/Attached to Bedroom 2)**: West/Northwest of Bedroom 2.
-    *   *Reasoning*: Situated in the West or Northwest, adjacent to Bedroom 2, this bathroom placement respects the energetic principles of the West zone for male occupants while ensuring convenient access.
-*   **Stairs**: Center-Left (East/Northeast), adjacent to Living Room.
-    *   *Reasoning*: Internal stairs are best placed in the East or Northeast to allow for the upward flow of positive energy, avoiding the central Brahmasthan. Its proximity to the living room ensures easy accessibility for all floors.
-*   **Study Room**: Front-Center (North/Northeast).
-    *   *Reasoning*: The North or Northeast is ideal for a study room as it is associated with knowledge and intellect (Budha), promoting concentration and learning. This placement ensures good natural light and positive mental stimulation.
-
-*First Floor Plan*
-
-*   **Bedroom 3 (Male/Female Family Member)**: Back-Left (Southwest).
-    *   *Reasoning*: While Southwest is ideal for the Master Bedroom, it can also be utilized for another bedroom, especially if this is the primary bedroom on the first floor, ensuring stability and restful sleep. If not the primary, it should be for adult married children as per Vastu.
-*   **Bedroom 4 (Female Family Member)**: Back-Right (Southeast).
-    *   *Reasoning*: The Southeast is recommended for female family members' bedrooms to ensure good health and happiness, as it is governed by Agni (fire), promoting vitality. This placement supports well-being and positive emotional energy.
-*   **Bedroom 5 (Male Family Member)**: Back-Center (West).
-    *   *Reasoning*: The West is recommended for male family members' bedrooms, as it is associated with commanding and authoritative forces, fostering strength and success. This location provides a stable and conducive environment for the male occupant.
-*   **Bathroom 3 (Attached to Bedroom 3)**: Southwest corner of Bedroom 3.
-    *   *Reasoning*: Placing the bathroom within Bedroom 3 in the Southwest corner of the floor plan maintains the integrity of the bedroom's primary Vastu zone, ensuring minimal disruption to the overall energy flow.
-*   **Bathroom 4 (Attached to Bedroom 4)**: Southeast corner of Bedroom 4.
-    *   *Reasoning*: Attaching a bathroom to Bedroom 4 in the Southeast corner aligns with the energetic principles of the Southeast zone, promoting purity and well-being for the occupants of that room.
-*   **Bathroom 5 (Attached to Bedroom 5)**: West/Northwest of Bedroom 5.
-    *   *Reasoning*: Situated in the West or Northwest, adjacent to Bedroom 5, this bathroom placement respects the energetic principles of the West zone for male occupants while ensuring convenient access.
-*   **Balcony**: Front-Left (East/Northeast).
-    *   *Reasoning*: A balcony in the East or Northeast allows for the enjoyment of morning sunlight and fresh air, promoting positive energy and a connection with nature. This placement maximizes the benefits of the East-facing plot.
+FIRST FLOOR:
+- Master Bedroom -> Rear-Right
+- Bedroom (Children) -> Front-Right
+- Bedroom (Female) -> Rear-Left
+- Balcony -> Front-Center
+- Bathroom 1 -> Center-Right
+- Bathroom 2 -> Center-Left
+- Internal Stairs -> Center-Left
 
 DO NOT INCLUDE (FATAL ERRORS):
-- NO 3D/Isometric. NO door/window measurement boxes (e.g., DO NOT show D1=4x7).
 - NO blurry text. No unlabelled rooms.

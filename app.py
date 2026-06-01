@@ -12,7 +12,7 @@ from user_input import generate_prompt_from_dict
 from generate_image import main as generate_image_main
 from generate_report import generate_vastu_report
 from generate_pdf import generate_pdf_report
-# rag_chatbot is imported lazily to prevent ML startup timeout
+from rag_chatbot import get_chatbot_response
 
 app = Flask(__name__)
 CORS(app)
@@ -25,8 +25,6 @@ def chat():
         if not query:
             return jsonify({"status": "error", "detail": "Empty query"}), 400
         
-        # Lazy import to avoid blocking gunicorn startup
-        from rag_chatbot import get_chatbot_response
         response = get_chatbot_response(query)
         return jsonify({"status": "success", "response": response})
     except Exception as e:
@@ -153,5 +151,4 @@ def send_email():
         return jsonify({"status": "error", "detail": f"Failed to send email: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    app.run(debug=True, port=port, host="0.0.0.0")
+    app.run(debug=True, port=8080, host="0.0.0.0")

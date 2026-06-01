@@ -53,7 +53,7 @@ def main():
     print("\nSending prompt to image model (usually 10-30 seconds)...")
     try:
         response = client.images.generate(
-            model="gpt-image-1.5",
+            model="gpt-image-2",
             prompt=prompt,
             size="1536x1024",
             quality="high",
