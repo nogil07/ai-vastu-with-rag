@@ -1,4 +1,4 @@
-# AI Vastu | https://ai-vastu-with-rag.vercel.app/ |
+# AI Vastu | https://ai-vastu-with-rag.vercel.app/ | (backend is taken down)
 
 AI Vastu is a full-stack floor-plan generation app that combines Vastu Shastra, Kerala Panchayat Building Rules (KPBR), retrieval-augmented generation, AI image generation, and a polished React interface. Users enter plot and room requirements, the backend retrieves relevant Vastu/KPBR constraints, generates an optimized prompt, creates a floor-plan image, writes a compliance report, and exports a downloadable PDF.
 
